@@ -6,7 +6,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
 	# Examples:
-	# url(r'^$', 'rollerdisco.views.home', name='home'),
+	url(r'^$', 'site_framework.views.frontpage', name='home'),
 	# url(r'^rollerdisco/', include('rollerdisco.foo.urls')),
   #url(r'^adduser','events.views.adduser',name="newuser"),
   #url(r'^showtickets/$','events.views.showtickets', name="index"),
