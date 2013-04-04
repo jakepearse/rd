@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
-
+# hello i am prakash
 class Promotion(models.Model):
   title=models.CharField(max_length=200)
   weekday=models.CharField(max_length=9,null=True)
