@@ -1,0 +1,12 @@
+<h2>Welcome to RollerDisco.com</h2>
+  {% extends "base.html" %}
+  {% block content %}
+  <p><iframe width="560" height="315" src="http://www.youtube.com/embed/reowCcau1E4?rel=0" mce_src="http://www.youtube.com/embed/reowCcau1E4?rel=0" frameborder="0" allowfullscreen=""></iframe></p>
+  {% for article in articles %}
+    <article>
+      <h2>{{article.title}}</h2>
+      <p>{{article.body}}</p>
+    </article>
+  {% endfor %}
+  {% endblock %}
+
