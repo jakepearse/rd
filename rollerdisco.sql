@@ -382,7 +382,7 @@ CREATE TABLE `events_promotion` (
 
 LOCK TABLES `events_promotion` WRITE;
 /*!40000 ALTER TABLE `events_promotion` DISABLE KEYS */;
-INSERT INTO `events_promotion` VALUES (2,'Saturday Night','Saturday','20:00:00','00:00:00',15.00,200,18,'rollerdisco.png',1),(3,'Friday Night','Friday','18:00:00','02:00:00',10.00,150,18,'rollerdisco.png',1),(4,'Thursday Night','Thursday','18:00:00','00:00:00',10.00,100,18,'rollerdisco.png',1),(5,'Family Jam','Saturday','11:00:00','17:00:00',10.00,100,5,'rollerdisco.png',1),(6,'Dummy','Monday','00:00:00','06:00:00',6.00,10,18,'rollerdisco.png',0);
+INSERT INTO `events_promotion` VALUES (2,'Saturday Night','Saturday','20:00:00','00:00:00',15.00,200,18,'/static/images/rollerdisco.png',1),(3,'Friday Night','Friday','18:00:00','02:00:00',10.00,150,18,'/static/images/rollerdisco.png',1),(4,'Thursday Night','Thursday','18:00:00','00:00:00',10.00,100,18,'/static/images/rollerdisco.png',1),(5,'Family Jam','Saturday','11:00:00','17:00:00',10.00,100,5,'/static/images/rollerdisco.png',1),(6,'Dummy','Monday','00:00:00','06:00:00',6.00,10,18,'/static/images/rollerdisco.png',0);
 /*!40000 ALTER TABLE `events_promotion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -458,4 +458,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-04-04 15:21:20
+-- Dump completed on 2013-04-04 16:46:00
