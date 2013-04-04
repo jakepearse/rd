@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>{{event.promotion.title}}</h2>
+<img src="{{event.promotion.flyer}}">image goes here</img>
+<p>{{event.date}}</p>
+<p><strong>Please be aware this event is for {{event.promotion.ageRestriction}} Years and above only.</strong></p>
+<p>Doors open at: {{event.promotion.startTime}}</p>
+<p>Event Finishes at: {{event.promotion.finishTime}}</p>
+<p>Ticket price (includes Skate Hire): &pound;{{event.promotion.price}} per person</p>
+{% ifequal tickets_available 0 %}
+<p>Sorry, Online tickets are all sold out!</p>
+<p>But dont worry we always keep plenty of tickets available on the door</p>
+{% else %}
+<p>Remaining tickets: {{tickets_available}}</p>
+<a href="">Hurry and Order tickets now!</a>
+{% endifequal %}
+{% endblock %}
