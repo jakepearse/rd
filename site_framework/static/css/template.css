@@ -15,6 +15,9 @@ body {
 	background-image: url(../images/background.jpg);
 	background-repeat: repeat-y;
 	background-position: center top;
+	position: relative;
+	font-family: "Segoe UI", Candara, "Bitstream Vera Sans", "DejaVu Sans", "Bitstream Vera Sans", "Trebuchet MS", Verdana, "Verdana Ref", sans-serif;
+	color: #fff;
 }
 
 a img { /* this selector removes the default blue border displayed in some browsers around an image when it is surrounded by a link */
@@ -67,7 +70,10 @@ border-right: auto;
 	width: 200px;
 	border: 0px solid #fff;
 }
-
+.safteyFirst {
+    background: url("../images/notice_button.png") no-repeat scroll 10px 35px transparent;
+    height: 115px;
+}
 #main_col {
 position: relative;
 float: left;
@@ -141,7 +147,7 @@ ul{
 	}
 /*////////// HEADERS //////////*/
 
-#header {
+header {
 	height: 150px;
 }
 
@@ -217,9 +223,9 @@ clear: both;
 	}
 /*////////// NAV //////////*/
 
-#nav_tabs_container{
+nav{
 	position: absolute;
-	right: 19px; 
+	right: 10px; 
 	top: 67px;
 	z-index: 4;
 	height: 90px;

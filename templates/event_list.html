@@ -3,16 +3,13 @@
 
 {% block content %}
     <h2>Upcoming Events</h2>
-{% for promotion in promotions %}
+
   <p><strong>{{promotion}}</strong></p>
   <ul>
-    {% for event in event_list %}
-      {% if event.promotion.title == promotion.title %}
-        <li><p>{{event.date}}<a href="{{event.id}}/eventdetail"> more detail</a></p></li>
-      {% endif %}
+{% for promotion in promotions %}
+    <li><p>{{promotion.title}} £{{promotion.price}} <img src="{{promotion.flyer}}"/></p></li>
     {% endfor %}
     </ul>
-{% endfor %}
 {% endblock %}
 
 
