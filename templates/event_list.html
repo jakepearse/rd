@@ -5,7 +5,7 @@
   <p><strong>{{promotion}}</strong></p>
   <ul>
 	{% for promotion in promotions %}
-		<li><a href="/showevents/{{promotion.id}}/eventdetail"><div class="promotionBox">{{promotion.title}} £{{promotion.price}} <img src="{{promotion.flyer}}"/></div></a></li>
+		<li><a href="/showevents/{{promotion.id}}/eventdetail"><div class="promotionBox">{{promotion.title}} £{{promotion.price}} <img src="/{{promotion.flyer}}"/></div></a></li>
     {% endfor %}
 	</ul>
 	<br class="clear" />
