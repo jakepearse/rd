@@ -10,7 +10,13 @@ from models import Ticket, Event, Promotion
 from navigation.views import navlist
 
 nav_list = navlist()
-  
+def testlogin(request,event_id):
+  if request.user.is_authenticated():
+    event = Event.objects.get(id=event_id)
+    return render_to_response('buytickets.html', {'has_account': True,'event':event})
+  else:
+    return redirect('register')
+    
 def register(request):
     if request.user.is_authenticated():
         # They already have an account; don't let them register again
@@ -28,10 +34,12 @@ def register(request):
         user = User.objects.create_user(username,email,password)
         user.first_name = firstname
         user.last_name = lastname
+        user.active = True
         user.save()
-        user = authenticate(username=username, password=password)
-        login(request,user)
-        #return redirect('adduser')
+        newuser = authenticate(username=username, password=password)
+        if newuser.is_active:
+          login(request, newuser)
+          return redirect('buytickets.html',{'has_account':True})
       else:
         return render_to_response('adduser.html',{'form':form},context_instance=RequestContext(request))
     else:
@@ -47,11 +55,12 @@ def showevents(request):
   event_list = Event.objects.filter(promotion__active=True)
   return render_to_response('event_list.html',{'promotions':active_promotion_list,'event_list':event_list,'nav_list':nav_list})
   
-def eventdetail(request,event_id):
-  event = Event.objects.get(id=event_id)
-  ticket_qs = Ticket.objects.filter(event__id=event_id)
-  tickets_sold = 0
-  for i in ticket_qs:
-    tickets_sold += int(i.quantity)
-  remaining_tickets = int(event.promotion.ticketAllowance) - tickets_sold
-  return render_to_response('event_detail.html',{'event':event,'nav_list':nav_list,'tickets_available':remaining_tickets})
+def eventdetail(request,promotion_id):
+  promotion = Promotion.objects.get(id=promotion_id)
+  events = Event.objects.filter(promotion__id=promotion_id)
+  #ticket_qs = Ticket.objects.filter(event__id=event_id)
+  #tickets_sold = 0
+  #for i in ticket_qs:
+    #tickets_sold += int(i.quantity)
+  #remaining_tickets = int(event.promotion.ticketAllowance) - tickets_sold
+  return render_to_response('event_detail.html',{'promotion':promotion,'events':events,'nav_list':nav_list})

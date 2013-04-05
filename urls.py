@@ -8,12 +8,14 @@ urlpatterns = patterns('',
 	# Examples:
 	url(r'^$', 'site_framework.views.frontpage', name='home'),
 	# url(r'^rollerdisco/', include('rollerdisco.foo.urls')),
-  url(r'^adduser','events.views.register',name='adduser'),
+  url(r'^testlogin/$','events.views.register',name='adduser'),
   #url(r'^showtickets/$','events.views.showtickets', name="index"),
 	#url(r'^addticket/', 'events.views.addticket', name="newticket"),
 	url(r'^showevents/$', 'events.views.showevents'),
   url(r'^showevents/(.*)/eventdetail$', 'events.views.eventdetail'),
   url(r'^navigation/$', 'navigation.views.navlist'),
+  url(r'^*/buytickets/(.*)/$', 'events.views.testlogin', name='testlogin'),
+  url(r'^adduser/$', 'events.views.register', name='register'),
   # Uncomment the admin/doc line below to enable admin documentation:
 	# url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 	
