@@ -1,5 +1,28 @@
-{% if has_account %}
-<p> hooray you haz account</p>
-{% else %}
-<p> no account for you bitch </P>
-{% endif %}
+{% extends "base.html" %}
+  {% block content %}
+    <p>{{event}}</p>
+    {% if ordered %}
+      <p> you orded {{ordered}} tickets </p>
+      <p> you are spending {{value}}</p>
+      <form action="/submit_order" method="post">
+      {% csrf_token %}
+      <input type="hidden" name="event" value="{{event}}">
+      <input type="hidden" name="cost" value="{{value}}">
+      <input type='submit' value='Proceed to payment'>
+      </form>
+    {% else %}
+      {% ifequal tickets 0 %}
+        <p>I'm sorry but the advance tickets are all sold out, or closed for this this event.</p>
+        <p>Don't worry we always keep plenty of tickets available on the door for each event.</p>
+      {% else %}
+        <p>remaining tickets = {{tickets}}</p>
+        <form action="" method="post">
+          <table>
+            {% csrf_token %}
+            {{form.as_table}}
+          </table>
+          <input type="submit" value="Submit">
+        </form>
+      {% endifequal %}
+    {% endif %}
+  {% endblock %}

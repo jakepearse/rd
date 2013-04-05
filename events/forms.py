@@ -24,3 +24,6 @@ class RegistrationForm(forms.Form):
     if password != password2:
       raise forms.ValidationError('Passwords do not match')
     return password
+
+class ticket_quantity(forms.Form):
+  quantity = forms.IntegerField(label="Number of tickets",min_value=1)

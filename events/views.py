@@ -1,26 +1,30 @@
 import datetime
 from django.contrib.auth import authenticate,login
-from django.shortcuts import render_to_response, redirect, get_object_or_404
+from django.shortcuts import HttpResponse, render_to_response, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.template import RequestContext
 from django.core.mail import send_mail
-from forms import RegistrationForm
+from forms import RegistrationForm, ticket_quantity
 from django import forms
 from models import Ticket, Event, Promotion
 from navigation.views import navlist
 
 nav_list = navlist()
+promotion_qs = Promotion.objects.filter(active=True)
+
 def testlogin(request,event_id):
+  form = RegistrationForm()
+  event_id = int(event_id)
+  event = Event.objects.get(id=event_id)
   if request.user.is_authenticated():
-    event = Event.objects.get(id=event_id)
     return render_to_response('buytickets.html', {'has_account': True,'event':event})
   else:
-    return redirect('register')
+    return redirect('adduser.html',{'event':event,'form':form,'promotions':promotion_qs},context_instance=RequestContext(request))
     
-def register(request):
+def register(request,event):
     if request.user.is_authenticated():
         # They already have an account; don't let them register again
-        return render_to_response('buytickets.html', {'has_account': True})
+        return render_to_response('buytickets.html', {'has_account': True,'event':event})
     elif request.method == 'POST':
       form = RegistrationForm(request.POST)
       if form.is_valid():
@@ -39,12 +43,12 @@ def register(request):
         newuser = authenticate(username=username, password=password)
         if newuser.is_active:
           login(request, newuser)
-          return redirect('buytickets.html',{'has_account':True})
+          return redirect('buytickets.html',{'has_account':True,'event':event})
       else:
-        return render_to_response('adduser.html',{'form':form},context_instance=RequestContext(request))
+        return render_to_response('adduser.html',{'form':form,'event':event},context_instance=RequestContext(request))
     else:
         form = RegistrationForm()
-    return render_to_response('adduser.html',{'form':form},context_instance=RequestContext(request))
+    return render_to_response('adduser.html',{'form':form,'event':event},context_instance=RequestContext(request))
     
 def showtickets(request):
   ticket_list = Ticket.objects.all()
@@ -56,11 +60,43 @@ def showevents(request):
   return render_to_response('event_list.html',{'promotions':active_promotion_list,'event_list':event_list,'nav_list':nav_list})
   
 def eventdetail(request,promotion_id):
+  promotion_id = int(promotion_id)
   promotion = Promotion.objects.get(id=promotion_id)
   events = Event.objects.filter(promotion__id=promotion_id)
-  #ticket_qs = Ticket.objects.filter(event__id=event_id)
-  #tickets_sold = 0
-  #for i in ticket_qs:
-    #tickets_sold += int(i.quantity)
-  #remaining_tickets = int(event.promotion.ticketAllowance) - tickets_sold
-  return render_to_response('event_detail.html',{'promotion':promotion,'events':events,'nav_list':nav_list})
+  return render_to_response('event_detail.html',{'promotion':promotion,'events':events,'nav_list':nav_list,'promotions':promotion_qs,})
+
+def buytickets(request,event_id):
+  #get event form url
+  event_id = int(event_id)
+  event = Event.objects.get(id=event_id)
+  #find any tickets sold for that event
+  ticket_qs = Ticket.objects.filter(event__id=event_id)
+  #count the tickets
+  tickets_sold = 0
+  for i in ticket_qs:
+    tickets_sold += int(i.quantity)
+  remaining_tickets = int(event.promotion.ticketAllowance) - tickets_sold
+  #dont let the total fall below 0
+  if remaining_tickets < 0:
+    remaining_tickets = 0
+  #if the form is POSTed
+  if request.method == 'POST':
+    form = ticket_quantity(request.POST)
+    #check the form is valid
+    if form.is_valid():
+      cd = form.cleaned_data
+      ordered_tickets = cd.get('quantity')
+      order_value = event.promotion.price * ordered_tickets
+      # return the quantity and value of order
+      return render_to_response('buytickets.html',{'value':order_value,
+      'ordered':ordered_tickets,
+      'event':event,
+      'promotions':promotion_qs}
+      ,context_instance=RequestContext(request))
+    #if the form is not vailid
+    else:
+      return render_to_response('buytickets.html',{'event':event,'tickets':remaining_tickets,'promotions':promotion_qs,'form':form},context_instance=RequestContext(request))
+  #if form has not been POSTed
+  else:
+    form = ticket_quantity()
+    return render_to_response('buytickets.html',{'event':event,'tickets':remaining_tickets,'promotions':promotion_qs,'form':form},context_instance=RequestContext(request))

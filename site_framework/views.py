@@ -13,6 +13,6 @@ def frontpage(request):
     front_page_articles = Article.objects.filter(front_page=True)
     return render_to_response("front_page.html",{'articles':front_page_articles,'nav_list':nav_list,'promotions':promotion_qs,'url':url})
   elif url == '/contact/':
-    return render_to_response("contact.html",{'nav_list':nav_list,'url':url})
+    return render_to_response("contact.html",{'nav_list':nav_list,'url':url,'promotions':promotion_qs,})
   elif url == '/find/': 
-    return render_to_response("find.html",{'nav_list':nav_list,'url':url})
+    return render_to_response("find.html",{'nav_list':nav_list,'url':url,'promotions':promotion_qs,})
