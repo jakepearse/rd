@@ -11,7 +11,7 @@
 <p>Ticket price (includes Skate Hire): &pound;{{promotion.price}} per person</p>
 <ul>
 {% for event in events %}
-	<li><a href="#">
+	<li><a href="/buytickets/{{event.id}}">
 		<div class="promotionBox">
 			{{event.date}}
 			<img src="{{event.promotion.flyer}}" />
