@@ -1,28 +1,43 @@
 import datetime
-from django.shortcuts import render_to_response, redirect
+from django.contrib.auth import authenticate,login
+from django.shortcuts import render_to_response, redirect, get_object_or_404
+from django.contrib.auth.models import User
 from django.template import RequestContext
-from forms import TicketForm, UserForm
+from django.core.mail import send_mail
+from forms import RegistrationForm
+from django import forms
 from models import Ticket, Event, Promotion
 from navigation.views import navlist
 
 nav_list = navlist()
-
-def adduser(request):
-  adduser_form = UserForm(request.POST or None)
-  if adduser_form.is_valid():
-    create_user = adduser_form.save()
-    create_user.save()
-    return redirect(addticket)
-  return render_to_response('adduser_form.html',{'adduser_form':adduser_form},context_instance=RequestContext(request))
   
-def addticket(request):
-  addticket_form = TicketForm(request.POST or None)
-  if addticket_form.is_valid():
-    create_form = addticket_form.save()
-    create_form.save()
-    return redirect(showtickets)
-  return render_to_response('addticket_form.html',{'addticket_form':addticket_form},context_instance=RequestContext(request))
-  
+def register(request):
+    if request.user.is_authenticated():
+        # They already have an account; don't let them register again
+        return render_to_response('buytickets.html', {'has_account': True})
+    elif request.method == 'POST':
+      form = RegistrationForm(request.POST)
+      if form.is_valid():
+        cd = form.cleaned_data
+        #make a user here
+        username = cd.get('username')
+        firstname = cd.get('firstname')
+        lastname = cd.get('lastname')
+        email = cd.get('email')
+        password = cd.get('password')
+        user = User.objects.create_user(username,email,password)
+        user.first_name = firstname
+        user.last_name = lastname
+        user.save()
+        user = authenticate(username=username, password=password)
+        login(request,user)
+        #return redirect('adduser')
+      else:
+        return render_to_response('adduser.html',{'form':form},context_instance=RequestContext(request))
+    else:
+        form = RegistrationForm()
+    return render_to_response('adduser.html',{'form':form},context_instance=RequestContext(request))
+    
 def showtickets(request):
   ticket_list = Ticket.objects.all()
   return render_to_response('ticketlist.html',{'ticket_list':ticket_list})

@@ -8,7 +8,7 @@ urlpatterns = patterns('',
 	# Examples:
 	url(r'^$', 'site_framework.views.frontpage', name='home'),
 	# url(r'^rollerdisco/', include('rollerdisco.foo.urls')),
-  #url(r'^adduser','events.views.adduser',name="newuser"),
+  url(r'^adduser','events.views.register',name='adduser'),
   #url(r'^showtickets/$','events.views.showtickets', name="index"),
 	#url(r'^addticket/', 'events.views.addticket', name="newticket"),
 	url(r'^showevents/$', 'events.views.showevents'),
