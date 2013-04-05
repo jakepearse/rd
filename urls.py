@@ -15,7 +15,7 @@ urlpatterns = patterns('',
 	url(r'^showevents/$', 'events.views.showevents'),
 	url(r'^showevents/(.*)/eventdetail$', 'events.views.eventdetail'),
 	url(r'^navigation/$', 'navigation.views.navlist'),
-	url(r'^*/buytickets/(.*)/$', 'events.views.testlogin', name='testlogin'),
+	url(r'^buytickets/(.*)$', 'events.views.testlogin', name='testlogin'),
   	url(r'^adduser/$', 'events.views.register', name='register'),
 	# Uncomment the admin/doc line below to enable admin documentation:
 	# url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
