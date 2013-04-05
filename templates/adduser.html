@@ -1,0 +1,15 @@
+{% if form.errors %}
+  <p style="color: red;">
+    please correct the error {{form.errors|pluralize}} below
+  </p>
+  {% for error in errors %}
+  <p>{{error}}</p>
+  {% endfor %}
+{% endif %}
+ <form action="" method="post">
+  <table>
+    {% csrf_token %}
+    {{ form.as_table }}
+  </table>
+  <input type="submit" value="Submit">
+  </form>
