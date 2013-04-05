@@ -1,9 +1,10 @@
 <nav>
   <div id="nav_tabs">
     <ul id="main-menu" class="menu_tabs">
-      {% for nav_element in nav_list %}
-    	<li><a href="{{nav_element}}">{{nav_element}}</a></li>
-      {% endfor %}
+    	<li {% ifequal url '/' %}id='current'{% endifequal %}><a href="/">Home</a></li>
+    	<li {% ifequal url '/find' %}id='current'{% endifequal %}><a href="/find">Find Us</a></li>
+    	<li><a href="http://rollerdisco.zenfolio.com/" target="_blank">Photos</a></li>
+    	<li {% ifequal url '/contact' %}id='current'{% endifequal %}><a href="/contact">Contact</a></li>
 	</ul>
   </div>
 </nav>

@@ -30,7 +30,6 @@ a img { /* this selector removes the default blue border displayed in some brows
 	font-family: "Segoe UI", Candara, "Bitstream Vera Sans", "DejaVu Sans", "Bitstream Vera Sans", "Trebuchet MS", Verdana, "Verdana Ref", sans-serif;
 	font-size: 1em;
 	color: #fff;
-
 	}
 
 #image_holder_holder{
@@ -84,9 +83,28 @@ float: left;
 
 	float: right;
 	border: 0px solid #fff;
-	}
-
-
+}
+.promotionBox {
+   background: none repeat scroll 0 0 #FFFFFF;
+    float: left;
+    margin: 10px 8px;
+    padding: 10px;
+    width: 180px;
+    border-radius: 15px;
+}
+.promotionBox img {
+    height: 90px;
+    margin: 5px 30px;
+    width: 95px;
+}
+.youtubeIframe {
+	width: 560px;
+	height: 315px;
+	margin: 0 auto;
+}
+.clear {
+	clear: both;
+}
 	
 /*////////// TYPOGRAPHY //////////*/
 
@@ -194,8 +212,9 @@ header {
 
 #content {
 	width: 650px;
-	background-image: url(../images/jot.png)
-	}
+	background-image: url(../images/jot.png);
+	padding: 10px;
+}
 #content ul{
 
 position: relative;
@@ -229,19 +248,14 @@ nav{
 	top: 67px;
 	z-index: 4;
 	height: 90px;
-
-
 	}
 #nav_tabs{
 	position: relative;
-		
 	} 
 #nav_tabs ul{
 	white-space:nowrap;
-
 	}
-#nav_tabs li 
-{
+#nav_tabs li{
 	font-size: 1.5em;
 	display: inline;
 	list-style-type: none;
@@ -264,13 +278,15 @@ nav{
 	
 	}	
 
-	li#current{
-background-color: #c7228c;	
-border-left: : solid 1px #c7228c;
-border-right: solid 1px #c7228c;
-	}
+li#current{
+	background-color: #c7228c;	
+	border-left: : solid 1px #c7228c;
+	border-right: solid 1px #c7228c;
+}
 	
-	
+a:active{
+ color: red;
+ }
 li#current a {
 
 		}

@@ -4,27 +4,29 @@
 	</div>
 	<div class="moduletable_event_menu">
 		<h3>Events</h3>
-		<ul class="latestnews_event_menu">
-			<li class="latestnews_event_menu">
-				<a class="latestnews_event_menu" href="#">Thursday</a>
-			</li>
-		</ul>		
+		  <ul class="latestnews_event_menu">
+			{% for promotion in promotions %}
+				<li class="latestnews_event_menu"><a class="latestnews_event_menu" href="/showevents/{{promotion.id}}/eventdetail">{{promotion.title}}</a></li>
+			{% endfor %}
+			<br />
+		</ul>
 	</div>
-	<div class="moduletable">
+	<div class="buyTickets">
 		<!-- Simple Image Holder 1.5.12 starts here -->
 		<div style="text-align:center;">
-			<a href="#">
-				<img border="0" title="buy tickets" alt="buy tickets" src="../static/images/ticket_button.gif">
+			<a href="/showevents/">
+				<img border="0" title="buy tickets" alt="buy tickets" src="/static/images/ticket_button.gif">
 			</a>
 		</div>
 		<!-- Simple Image Holder 1.5.12 ends here -->
 	</div>
-	<div class="moduletable_ customlatestnews">
-		<h3>Latest News</h3>
-		<ul class="latestnews">
-			<li class="latestnews">
-				<a class="latestnews" href="#">News</a>
-			</li>
+	<hr style="clear: both;">	
+	<div id="social_network_icons">
+		<ul class="soc_net">
+			<li><a target="_blank" href="http://www.youtube.com/user/RenaissanceRooms"><img alt="You Tube" src="/static/images/youtube_icon.png"></a></li>
+			<li><a target="_blank" href="http://www.facebook.com/pages/Roller-DiscoRenaissance-Rooms/118169644863329"><img alt="Face Book" src="/static/images/facebook_icon.png"></a></li>
+			<li><a target="_blank" href="http://twitter.com/Roller_Disco"><img alt="" src="/static/images/twitter_icon.png"></a></li>
+			<li><a target="_blank" href="#"><img alt="myspace coming soon" src="/static/images/myspace_icon_greyed.png"></a></li>
 		</ul>
 	</div>
 </div>

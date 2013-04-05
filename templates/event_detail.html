@@ -1,17 +1,24 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>{{event.promotion.title}}</h2>
-<img src="{{event.promotion.flyer}}">image goes here</img>
-<p>{{event.date}}</p>
-<p><strong>Please be aware this event is for {{event.promotion.ageRestriction}} Years and above only.</strong></p>
-<p>Doors open at: {{event.promotion.startTime}}</p>
-<p>Event Finishes at: {{event.promotion.finishTime}}</p>
-<p>Ticket price (includes Skate Hire): &pound;{{event.promotion.price}} per person</p>
-{% ifequal tickets_available 0 %}
-<p>Sorry, Online tickets are all sold out!</p>
-<p>But dont worry we always keep plenty of tickets available on the door</p>
-{% else %}
-<p>Remaining tickets: {{tickets_available}}</p>
-<a href="">Hurry and Order tickets now!</a>
-{% endifequal %}
+<h2>{{promotion.title}}</h2>
+<div class="promotionBox">
+	<img src="{{promotion.flyer}}" />
+</div>
+<br class="clear" />
+<p><strong>Please be aware this event is for {{promotion.ageRestriction}} Years and above only.</strong></p>
+<p>Doors open at: {{promotion.startTime}}</p>
+<p>Event Finishes at: {{promotion.finishTime}}</p>
+<p>Ticket price (includes Skate Hire): &pound;{{promotion.price}} per person</p>
+<ul>
+{% for event in events %}
+	<li><a href="#">
+		<div class="promotionBox">
+			{{event.date}}
+			<img src="{{event.promotion.flyer}}" />
+			Price: &pound;{{event.promotion.price}}
+		</div>
+	</a></li>
+{% endfor %}
+</ul>
+<br class="clear" />
 {% endblock %}

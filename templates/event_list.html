@@ -1,15 +1,14 @@
-
 {% extends "base.html" %}
-
 {% block content %}
     <h2>Upcoming Events</h2>
 
   <p><strong>{{promotion}}</strong></p>
   <ul>
-{% for promotion in promotions %}
-    <li><p>{{promotion.title}} £{{promotion.price}} <img src="{{promotion.flyer}}"/></p></li>
+	{% for promotion in promotions %}
+		<li><a href="/showevents/{{promotion.id}}/eventdetail"><div class="promotionBox">{{promotion.title}} £{{promotion.price}} <img src="{{promotion.flyer}}"/></div></a></li>
     {% endfor %}
-    </ul>
+	</ul>
+	<br class="clear" />
 {% endblock %}
 
 

@@ -3,6 +3,40 @@
 	<head>
   		<link rel="stylesheet" type="text/css" href="/static/css/template.css">
 		<title>Roller Disco</title>
+		<link type="text/css" rel="stylesheet" href="/static/css/rhinoslider-1.05.css" />
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+		<script type="text/javascript" src="/static/js/rhinoslider-1.05.min.js"></script>
+		<script type="text/javascript" src="/static/js/mousewheel.js"></script>
+		<script type="text/javascript" src="/static/js/easing.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('#slider').rhinoslider({
+					showTime: 4000,
+					controlsPlayPause: false,
+					autoPlay: true,
+					slideNextDirection: 'toLeft'
+				});
+			});
+		</script>
+		<style type="text/css">
+			body { background-color:#000; }
+			
+			#slider {
+				width:600px;
+				height:250px;
+				
+				/*IE bugfix*/
+				padding:0;
+				margin:0;
+			}
+			
+			#slider li { list-style:none; }
+			
+			#page {
+				width:600px;
+				margin:50px auto;
+			}
+		</style>	
 	</head>
 	<body>
 		<div id="image_holder"> </div>
@@ -13,7 +47,6 @@
   		</header>
 			{% include "left_column.html" %}
   		<div id="main_col">
-
 	  		<div id="content">
   				{% block content %}
   				{% endblock %}
