@@ -1,8 +1,4 @@
-/*
-
-Enter Joomla! 1.5 design comments here
-
-*/
+@charset "UTF-8";
 
 /*////////// GENERAL //////////*/
 
@@ -19,50 +15,43 @@ body {
 	font-family: "Segoe UI", Candara, "Bitstream Vera Sans", "DejaVu Sans", "Bitstream Vera Sans", "Trebuchet MS", Verdana, "Verdana Ref", sans-serif;
 	color: #fff;
 }
-
 a img { /* this selector removes the default blue border displayed in some browsers around an image when it is surrounded by a link */
 	border: none;
 	padding: 3px;
 }
-	
 #container{
 	width: 100%;
 	font-family: "Segoe UI", Candara, "Bitstream Vera Sans", "DejaVu Sans", "Bitstream Vera Sans", "Trebuchet MS", Verdana, "Verdana Ref", sans-serif;
 	font-size: 1em;
 	color: #fff;
-	}
-
+}
 #image_holder_holder{
 	position: relative;
 	margin-left: auto;
 	margin-right: auto;
-	}
-	
-#image_holder{
+}
+#image_holder {
 	position: absolute;
 	right: 0px;
 	top: 150px;
 	z-index: 0;
 	width: 202px;
 	height: 626px;
-background-image: url(../images/roller_girl.png);
+	background-image: url(../images/roller_girl.png);
 }
-
-#logo_holder{
+#logo_holder {
 	position: absolute;
 	z-index: 9;
 	background-image: url(../images/roller_disco_logo.png);
 	width: 127px;
 	height: 127px;
 	background-repeat: no-repeat;
-	}
-
-#container1{
-	
-width: 972px;
-border-left: auto;
-border-right: auto;
-		}
+}
+#container1 {
+	width: 972px;
+	border-left: auto;
+	border-right: auto;
+}
 #left_col {
 	position: relative;
 	float: left;
@@ -74,13 +63,11 @@ border-right: auto;
     height: 115px;
 }
 #main_col {
-position: relative;
-float: left;
+	position: relative;
+	float: left;
 }
-	
 #right_col {
 	position: relative;
-
 	float: right;
 	border: 0px solid #fff;
 }
@@ -108,44 +95,37 @@ float: left;
 	
 /*////////// TYPOGRAPHY //////////*/
 
-h1, h4{
-
-	font-family: "Segoe UI", Candara, "Bitstream Vera Sans", "DejaVu Sans", "Bitstream Vera Sans", "Trebuchet MS", Verdana, "Verdana Ref", sans-serif;}
-
-h2, h3{
+h1, h4 {
 	font-family: "Segoe UI", Candara, "Bitstream Vera Sans", "DejaVu Sans", "Bitstream Vera Sans", "Trebuchet MS", Verdana, "Verdana Ref", sans-serif;
 }
-
-		
-
+h2, h3 {
+	font-family: "Segoe UI", Candara, "Bitstream Vera Sans", "DejaVu Sans", "Bitstream Vera Sans", "Trebuchet MS", Verdana, "Verdana Ref", sans-serif;
+}
 h1 {
 	font-size: 22px; 
 	color: #000;
-	}
+}
 h2 {
 	font-size: 4em;
 	text-align: left;;
 	color: #c7228c;
 	margin: 0 auto;
-	}
+}
 h3 {
 	font-size: 16px;
-	}
+}
 h4 {
 	font-size: 14px;
 	color: #FFF;
-	}
-
+}
 p {
 	color: #FFF;
-	}
-
+}
 blockquote {
 	font-size: 16px;	
 	font-weight: bold;
 	margin-bottom: 24px;
-	}
-
+}
 a {
 	line-height: 1.4em;
 	font-weight: bold;
@@ -153,28 +133,23 @@ a {
 	text-decoration: none;
 	cursor: pointer;
 }
-
 a:hover {
 	text-decoration: underline;
-	}
-a:visited {}
-
+}
 ul{
 	margin: 0px;
 	padding: 0px;
-	}
+}
+
 /*////////// HEADERS //////////*/
 
 header {
 	height: 150px;
 }
-
 #grey_banner {
 	height: 110px;
 	background-color: #ddd; 
-	
-	}
-	
+}
 #pink_strap {
 		height: 40px;
 		background-color: #c7228c;
@@ -187,28 +162,15 @@ header {
 	top: -110px;
 	float: right;
 	z-index: 5;
-	}
-
-#user2{}
-
-#user3{}
-
-#user4{}
-
+}
 .leftWidth { /*class allows for quickly ensuring anything on the left side can be set*/
 	width: 420px;
-	}
-
+}
 .quickMargin { /*adds 10px of margin to anything*/
 	margin: 10px
-	}
+}
 	
 /*////////// CONTENT //////////*/
-
-#content_bevel_top{
-
-	}
-
 
 #content {
 	width: 650px;
@@ -216,30 +178,18 @@ header {
 	padding: 10px;
 }
 #content ul{
-
-position: relative;
-list-style-type: none;
+	position: relative;
+	list-style-type: none;
 	line-height: 1.9em;
-	
-	}
-	
-	#content_bevel_bottom {
-
-	}
-	
+}
 #pushbottom {
-position: relative;
-clear: both;
-
-	}
-
-
-	
-
+	position: relative;
+	clear: both;
+}
 .leading {
 	padding: 7px;
+}
 
-	}
 /*////////// NAV //////////*/
 
 nav{
@@ -248,13 +198,13 @@ nav{
 	top: 67px;
 	z-index: 4;
 	height: 90px;
-	}
+}
 #nav_tabs{
 	position: relative;
-	} 
+} 
 #nav_tabs ul{
 	white-space:nowrap;
-	}
+}
 #nav_tabs li{
 	font-size: 1.5em;
 	display: inline;
@@ -263,49 +213,20 @@ nav{
 	border-right: : solid 1px #fff;	
 	border-left: solid 1px #fff;
 	background-color: #ddd;
-	}
-#nav_tabs li a span{
 }
-
-#nav_tabs li a{
+#nav_tabs li a {
 	color: #000;
-		}			
-
-#nav_tabs li .separator{
-	
-}	
-#nav_tabs a:hover{
-	
-	}	
-
-li#current{
+}			
+li#current {
 	background-color: #c7228c;	
 	border-left: : solid 1px #c7228c;
 	border-right: solid 1px #c7228c;
 }
-	
-a:active{
- color: red;
- }
-li#current a {
-
-		}
-
 #nav_container{
 	top: 145px;
 	left: 5px;
-
 }
-
-/*#nav_top_graphic{
-	height: 27px;
-	background-image: url("../images/nav_top.png");
-	background-repeat: no-repeat;
-*/	
-     
-	
 .moduletable_event_menu{	
-
 	background-image: url(../images/jot.png);
 	position: relative;	
 	width: 90%;
@@ -313,38 +234,27 @@ li#current a {
 	margin: auto;
 	padding-left: 2px;
 	padding-right: 2px;
-	
-	}
-	
+}
 .moduletable_event_menu ul{
 	text-indent: 1em;
-	}
-	
-	.moduletable_event_menu ul li a{
-	font-size: 1em;
-	}	
-	
-	/*#nav_bottom_graphic{
-	height: 27px;
-	background-image: url("../images/nav_bottom.png");
-	background-repeat: no-repeat;
-	}	*/
+}
+.moduletable_event_menu ul li a{
+font-size: 1em;
+}	
+
 /*////////// FOOTER //////////*/
+
 #social_network_icons{
 	position: relative;
 	width: 90%;
 	border: 0;
 	margin-left: auto;
 	margin-right: auto;
-
 	top: 5px;
-	
-	}
-
+}
 .soc_net li{
 	display: inline;
-
-	}
+}
 #footer {
 	position: relative;
 	clear: both;
@@ -360,170 +270,140 @@ li#current a {
 
 .cbFieldIconsLabels {
 	color: #fff;
-	}
-
+}
 #cbIconsBottom{
 	font-size: .75em;
 }
-
 .moduletable_search{
 	width: 85%;
 	position: relative;
 	border: 0;
 	margin-left: auto;
 	margin-right: auto;
-	}
-	
+}
 .search_search label{
 	display: none;
-	}
-	
+}
 .button_search{
 	border: 2px solid #fff;
 	background-color: #000;
 	color: #fff;
 	cursor: pointer;
-	}
-
+}
 .button_search:hover{
 	color:  #EA078C;
-	}
-	
+}
 .moduletable ul{
 	font-size: .75em;
 	position: relative;
 	left: 7px;
-	}
-		
+}
 .moduletable_login{
-position: relative;
-float: left;
-top: 5px;
-white-space:nowrap;
-margin-left: 0;
-margin-right: 10px;
-border: 0;
-text-align: right;
-font-size: .7em;
-	}
-
+	position: relative;
+	float: left;
+	top: 5px;
+	white-space:nowrap;
+	margin-left: 0;
+	margin-right: 10px;
+	border: 0;
+	text-align: right;
+	font-size: .7em;
+}
 .moduletable_login {
 	color: #000;
-	}
-	
-.moduletable_login a{
+}
+.moduletable_login a {
 	color:  #EA078C;
 	font-size: 1.1em;
-	}
-.componentheading {
-	}
-.cb_form_instructions{
-	line-height: 16px;}
-	
+}
+.cb_form_instructions {
+	line-height: 16px;
+}
 .cb_form_instructions li{
-		padding: 10px;}
-		
-.cb_field{ padding: 5px;}
-	
-.readon {
-	}
+	padding: 10px;
+}
+.cb_field{ 
+	padding: 5px;
+}
 	
 /*////////// INPUT //////////*/
 
-input.button{
+input.button {
 	color: #fff;
 	cursor: pointer;
 	background-color:  #000; 
 	cursor: pointer; 
-	}
-	
-input.button:hover{
+}
+input.button:hover {
 	color:  #EA078C;
-	}
-
-.button{
+}
+.button {
 	border: 2px solid #fff;
 	background-color: #000;
 	color: #fff;
 	cursor: pointer; 
 }
-.button:hover{
-color:  #EA078C;	
-	}
-
+.button:hover {
+	color:  #EA078C;	
+}
 input.button_login{
 	color: #fff;
 	border: 2px solid #fff;
 	cursor: pointer; 
-	}
-	
-	input.button_login:hover{
+}
+input.button_login:hover{
 	color:  #EA078C;
-	}
-
+}
 .button_login{
 	background-color: #000;
-	}
+}
 	
-	li {
-		list-style-type: none;
-		}
-
+li {
+	list-style-type: none;
+}
 #footer .moduletable {
 	position: relative;
 	width: 573px;
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;
-	}
-	
+}
 label {
 	color: #fff;
-	}
-	
-	.lof-ass .lof-navigator li img{
+}
+.lof-ass .lof-navigator li img {
 	display: none
-	}
-
+}
 a#sortlink {
-display: none;
+	display: none;
 }
-
 p#contents {
-color: #000;
+	color: #000;
 }
-
-
 .productPrice {
-color: #000;
+	color: #000;
 }
-
 ul.latestnews{
 postion: relative;
-width: 90%;
-margin-left: auto;
-margin-right: auto;
-background-image: url(../images/jot.png);
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	background-image: url(../images/jot.png);
 }
-
 a.latestnews {
-font-size: 0.8em;
-line_height: 1.6em;
+	font-size: 0.8em;
+	line_height: 1.6em;
 }
-
-
 .lof-ass .lof-navigator li h4{
-font-size: 75%;
+	font-size: 75%;
 }
-
 .lof-ass .lof-description h4 a{
-color: white;
-background-image: url(../images/jot.png);
-padding: 5px;
-border: 4px outset #C7228C;
+	color: white;
+	background-image: url(../images/jot.png);
+	padding: 5px;
+	border: 4px outset #C7228C;
 }
-
 .lof-ass .lof-description h4 a:hover{
-text-decoration: none;
-color:#C7228C;
-
+	text-decoration: none;
+	color:#C7228C;
+}
