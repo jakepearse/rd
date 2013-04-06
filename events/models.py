@@ -1,4 +1,5 @@
 from django.db import models
+import datetime
 from django.contrib.auth.models import User
 # Create your models here.
 # hello i am prakash
@@ -23,11 +24,14 @@ class Event(models.Model):
 
 class Ticket(models.Model):
   event=models.ForeignKey(Event)
-  user=models.ForeignKey(User)
+  user=models.ForeignKey(User,null=True)
   quantity=models.IntegerField()
-  status=models.CharField(max_length=25)
-  stResponse=models.CharField(max_length=255,null=True)
-  
+  totalCost=models.IntegerField()
+  status=models.CharField(max_length=25,default='pending')
+  stResponseCode=models.CharField(max_length=255,null=True)
+  stRefNumber=models.CharField(max_length=255,null=True)
+  stResponseText=models.CharField(max_length=255, null=True)
+  orderPlaced=models.DateTimeField(default=datetime.datetime.now())
   def __unicode__(self):
-    return "%s %s"%(self.user,self.event)
+    return "%s %s %s"%(self.user,self.event,self.status)
   

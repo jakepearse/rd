@@ -4,10 +4,9 @@
     {% if ordered %}
       <p> you orded {{ordered}} tickets </p>
       <p> you are spending {{value}}</p>
-      <form action="/submit_order" method="post">
+      <form action="/submit_order/" method="post">
       {% csrf_token %}
-      <input type="hidden" name="event" value="{{event}}">
-      <input type="hidden" name="cost" value="{{value}}">
+      {{form}}
       <input type='submit' value='Proceed to payment'>
       </form>
     {% else %}

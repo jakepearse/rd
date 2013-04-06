@@ -27,3 +27,8 @@ class RegistrationForm(forms.Form):
 
 class ticket_quantity(forms.Form):
   quantity = forms.IntegerField(label="Number of tickets",min_value=1)
+
+class confirm_order(forms.Form):
+  event= forms.CharField(widget=forms.HiddenInput())
+  quantity= forms.IntegerField(widget=forms.HiddenInput())
+  value=forms.IntegerField(widget=forms.HiddenInput())

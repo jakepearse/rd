@@ -4,7 +4,7 @@ from django.shortcuts import HttpResponse, render_to_response, redirect, get_obj
 from django.contrib.auth.models import User
 from django.template import RequestContext
 from django.core.mail import send_mail
-from forms import RegistrationForm, ticket_quantity
+from forms import RegistrationForm, ticket_quantity, confirm_order
 from django import forms
 from models import Ticket, Event, Promotion
 from navigation.views import navlist
@@ -88,7 +88,9 @@ def buytickets(request,event_id):
       ordered_tickets = cd.get('quantity')
       order_value = event.promotion.price * ordered_tickets
       # return the quantity and value of order
+      form = confirm_order(initial={'event':int(event.id),'quantity':int(ordered_tickets),'value':int(order_value)})
       return render_to_response('buytickets.html',{'value':order_value,
+      'form':form,
       'ordered':ordered_tickets,
       'event':event,
       'promotions':promotion_qs}
@@ -100,3 +102,20 @@ def buytickets(request,event_id):
   else:
     form = ticket_quantity()
     return render_to_response('buytickets.html',{'event':event,'tickets':remaining_tickets,'promotions':promotion_qs,'form':form},context_instance=RequestContext(request))
+
+def submit_order(request):
+  form = confirm_order(request.POST)
+  if form.is_valid():
+    cd = form.cleaned_data
+    event = Event.objects.get(id=cd.get('event'))
+    quantity = int(cd.get('quantity'))
+    value = int(cd.get('value'))
+    new_ticket = Ticket(event=event,
+                        quantity=quantity,
+                        totalCost=value)
+    new_ticket.save()
+    return HttpResponse('ok')
+  else:
+    return HttpResponse('fail')
+      
+      
