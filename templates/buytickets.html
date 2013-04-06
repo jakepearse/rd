@@ -1,14 +1,24 @@
 {% extends "base.html" %}
   {% block content %}
-    <p>{{event}}</p>
-    {% if ordered %}
-      <p> you orded {{ordered}} tickets </p>
-      <p> you are spending {{value}}</p>
-      <form action="/submit_order/" method="post">
+    <h2>{{event.promotion.title}}</h2>
+    <h3>{{event.date}}</h3>
+    {% if newform %}
+      <p> you have requested <strong>{{ordered}}</strong> tickets </p>
+      <p> The total cost will be: <strong>&pound;{{value}}</strong></p>
+      <p>All transactions are processed by our secure payment partner, rollerdisco
+      never record any card details.</p>
+      <p>Confirm your order details and click on the proceed to payment button below,
+      you will be taken to our payment partners site.</p>
+      <p>Have your payment details handy.</p>
+      <form action="https://payments.securetrading.net/process/payments/choice" method="post">
+      <table>
       {% csrf_token %}
-      {{form}}
+      {{newform.as_table}}
+      </table>
       <input type='submit' value='Proceed to payment'>
+      <p>Please note: Tickets booked online are <em>non-refundable</em></p>
       </form>
+      <p>If you want to change your order click <a href='/cleartickets/{{ticket.id}}/'>here<a></p>
     {% else %}
       {% ifequal tickets 0 %}
         <p>I'm sorry but the advance tickets are all sold out, or closed for this this event.</p>
@@ -22,6 +32,7 @@
           </table>
           <input type="submit" value="Submit">
         </form>
+
       {% endifequal %}
     {% endif %}
   {% endblock %}
