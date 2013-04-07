@@ -255,7 +255,7 @@ font-size: 1em;
 .soc_net li{
 	display: inline;
 }
-#footer {
+footer {
 	position: relative;
 	clear: both;
 	top: 5px;
@@ -361,7 +361,7 @@ input.button_login:hover{
 li {
 	list-style-type: none;
 }
-#footer .moduletable {
+footer .moduletable {
 	position: relative;
 	width: 573px;
 	margin-left: auto;
