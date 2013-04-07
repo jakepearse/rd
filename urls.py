@@ -14,7 +14,6 @@ urlpatterns = patterns('',
 	url(r'^showevents/(.*)/eventdetail$', 'events.views.eventdetail'),
 	url(r'^navigation/$', 'navigation.views.navlist', name='navlist'),
 	url(r'^buytickets/(.*)/$', 'events.views.buytickets', name='buytickets'),
-  url(r'^adduser/$', 'events.views.register', name='register'),
   url(r'^callback/$', 'events.views.callback', name='callback'),
   url(r'^cleartickets/(\d+)/$', 'events.views.clear_tickets'),
   ############ ADD NEW URL PATTERNS TO END OF FILE #####################
