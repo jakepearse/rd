@@ -10,5 +10,6 @@ class Article(models.Model):
   publishedDate=models.DateField()
   active=models.BooleanField()
   front_page=models.BooleanField()
+  showTitle=models.BooleanField(default=True)
   def __unicode__(self):
     return self.title
