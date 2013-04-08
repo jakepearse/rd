@@ -1,0 +1,15 @@
+BEGIN:VCARD
+VERSION:2.1
+TEL;PREF;WORK;VOICE;ENCODING=QUOTED-PRINTABLE:020 7720 9140
+TEL;WORK;FAX;ENCODING=QUOTED-PRINTABLE:
+N:us;Contact;;;
+FN:Contact  us
+ADR;WORK;POSTAL;ENCODING=QUOTED-PRINTABLE:;;Renaissance Rooms,=0D=0Aoff Miles Street,=0D=0Aopposite arch 8,=0D=0A;Vauxhall;London;SW8 1RZ;England
+EMAIL;INTERNET:info@rollerdisco.com
+NOTE;ENCODING=QUOTED-PRINTABLE:
+URL;WORK:http://www.rollerdisco.com/
+TITLE:Position
+ORG:Roller Disco
+REV:2013-04-08T03:54:49Z
+MAILER: Joomla! vCard for Roller Disco
+END:VCARD

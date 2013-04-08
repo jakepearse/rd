@@ -4,16 +4,20 @@
 
 body {
 	padding: 0;
+	margin: 0;
 	background-color: #000;
 	border: 0;
-	margin: auto;
+	font-family: "Segoe UI", Candara, "Bitstream Vera Sans", "DejaVu Sans", "Bitstream Vera Sans", "Trebuchet MS", Verdana, "Verdana Ref", sans-serif;
+	color: #fff;
+}
+.wrapper {
+	padding: 0;
+	margin: 0 auto;
 	width: 972px;
 	background-image: url(../images/background.jpg);
 	background-repeat: repeat-y;
 	background-position: center top;
 	position: relative;
-	font-family: "Segoe UI", Candara, "Bitstream Vera Sans", "DejaVu Sans", "Bitstream Vera Sans", "Trebuchet MS", Verdana, "Verdana Ref", sans-serif;
-	color: #fff;
 }
 a img { /* this selector removes the default blue border displayed in some browsers around an image when it is surrounded by a link */
 	border: none;
@@ -397,13 +401,74 @@ a.latestnews {
 .lof-ass .lof-navigator li h4{
 	font-size: 75%;
 }
-.lof-ass .lof-description h4 a{
-	color: white;
-	background-image: url(../images/jot.png);
-	padding: 5px;
-	border: 4px outset #C7228C;
+
+/* fancybox style */
+
+.fancyImagePopUp {
+	position: relative;
+	margin: 0 0 0 20px;
 }
-.lof-ass .lof-description h4 a:hover{
+.fancyImagePopUp img {
+	border: 1px solid #FF00AA;
+}
+
+/* rhino slider style */
+
+.slider_container_days {
+	background: url("../images/roller_disco_logo_v2.png") no-repeat;
+	width: 650px;
+	height: 200px;
+	background-position: 180px 0;
+}
+
+.slider_container_family {
+	background: url("../images/family_jam_logo.png") no-repeat;
+	width: 650px;
+	height: 200px;
+	background-position: 50px 0;
+}
+
+.slider_description {
+    background-color: #FFFFFF;
+    bottom: 0;
+    opacity: 0.8;
+    position: absolute;
+    width: 100%;	
+    filter:alpha(opacity=80); /* For IE8 and earlier */
+}
+
+.slider_container_days h4, .slider_container_family h4 {
+	line-height: 0; 
+	width: 15%;
+	float: right;
+	opacity: none;
+}
+
+.slider_container_days h4 a, .slider_container_family h4 a{
+	color: white;
+	background-image: url("../images/jot.png");
+	padding: 5px 10px;
+	border: 4px outset #C7228C;
+	background-color: #000;
+}
+.slider_container_days h4 a:hover, .slider_container_family h4 a:hover {
 	text-decoration: none;
 	color:#C7228C;
+}
+
+.slider_description p {
+	color: #000;
+	line-height: 1em; 
+	font-weight: bold;
+	width: 70%;
+	float: left;
+	padding-left: 30px;
+}
+
+/* google map */
+
+.find_map {
+	width:500px;
+	height: 400px;
+	margin: 10px auto;
 }

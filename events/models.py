@@ -11,7 +11,7 @@ class Promotion(models.Model):
   price=models.DecimalField(max_digits=4,decimal_places=2)
   ticketAllowance=models.IntegerField()
   ageRestriction=models.IntegerField()
-  flyer=models.ImageField(upload_to="site_framework/static/images",default="/static/images/rollerdisco.png")
+  flyer=models.ImageField(upload_to="static/images/upload",default="static/images/rollerdisco_logo_thumb.png")
   active=models.BooleanField()
   def __unicode__(self):
     return self.title
