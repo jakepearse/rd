@@ -7,7 +7,6 @@
   * http://rhinoslider.com/license/
   */
 .rhino-btn {
-	background:url(../img/rhinoslider-sprite.png) 0 0 no-repeat;
 	z-index:10;
 	width:56px;
 	height:53px;
@@ -91,7 +90,6 @@
 	content:' ';
 	width:16px;
 	height:26px;
-	background:url(../img/rhinoslider-sprite.png) -224px 0 no-repeat;
 }
 
 .rhino-bullets:after {

@@ -84,9 +84,7 @@ a img { /* this selector removes the default blue border displayed in some brows
     border-radius: 15px;
 }
 .promotionBox img {
-    height: 90px;
     margin: 5px 30px;
-    width: 95px;
 }
 .youtubeIframe {
 	width: 560px;
