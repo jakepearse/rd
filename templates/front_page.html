@@ -8,9 +8,9 @@
   {% for article in articles %}
   {% autoescape off %}
     <article>
-      {% ifequal article.showTitle 1 %}
+      {% if article.showTitle == 1 %}
       <h2>{{article.title}}</h2>
-      {% endifequal %}
+      {% endif %}
       <p>{{article.body}}</p>
     </article>
 	{% endautoescape %}

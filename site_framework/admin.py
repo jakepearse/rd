@@ -14,4 +14,3 @@ admin.site.register(Article,
   title  = ('title',),
   search_fields = ['title',],
   Media = CommonMedia,)
-
