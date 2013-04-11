@@ -38,7 +38,15 @@
 							vCard
 						</a>
 					</p>
-					<form id="emailForm" name="emailForm" method="post" class="form-validate" action="/contact/">
+					<table class="contact_form">
+						<form action="/thankyou/" method="post">
+							{% csrf_token %}
+							{{ form.as_table }}
+                            <button type="submit" class="send">Send</button>
+						</form>
+					</table>
+					<!-- 
+<form id="emailForm" name="emailForm" method="post" class="form-validate" action="/contact/">
 						<div class="contact_email">
 							<label for="contact_name">Enter your Name:</label>
 							<input type="text" value="" size="30" id="contact_name" name="name" autofocus />
@@ -61,6 +69,7 @@
 						</div>
 						<button type="submit" class="button validate">Send</button>
 					</form>
+ -->
 				</div>
 			</div><!-- end leading -->
 		</div><!-- end content -->
