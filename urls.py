@@ -7,22 +7,24 @@ admin.autodiscover()
 urlpatterns = patterns('',
 	# Examples:
 	url(r'^$', 'site_framework.views.frontpage', name='home'),
-	url(r'^contact/$', 'site_framework.views.frontpage'),
-	url(r'^find/$', 'site_framework.views.frontpage'),
 	url(r'^thankyou/$', 'site_framework.views.thankyou'),
+	url(r'^contact/$', 'site_framework.views.frontpage', name='contact'),
+	url(r'^find/$', 'site_framework.views.frontpage', name='location'),
 	# url(r'^rollerdisco/', include('rollerdisco.foo.urls')),
-	url(r'^adduser','events.views.register',name='adduser'),
-	url(r'^testlogin/$','events.views.register',name='adduser'),
 	url(r'^showevents/$', 'events.views.showevents',name='showevents'),
 	url(r'^showevents/(.*)/eventdetail$', 'events.views.eventdetail'),
-	url(r'^navigation/$', 'navigation.views.navlist'),
+	url(r'^navigation/$', 'navigation.views.navlist', name='navlist'),
 	url(r'^buytickets/(.*)/$', 'events.views.buytickets', name='buytickets'),
     url(r'^adduser/$', 'events.views.register', name='register'),
-    url(r'^callback/$', 'events.views.callback'),
-    url(r'^cleartickets/(\d+)/$', 'events.views.clear_tickets'),
   #url(r'^submit_order/$', 'events.views.submit_order', name='submit_order'),
 	# Uncomment the admin/doc line below to enable admin documentation:
 	# url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 	# Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^callback/$', 'events.views.callback', name='callback'),
+    url(r'^cleartickets/(\d+)/$', 'events.views.clear_tickets'),
+  ############ ADD NEW URL PATTERNS TO END OF FILE #####################
+	# Uncomment the admin/doc line below to enable admin documentation:
+	# url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+	# Uncomment the next line to enable the admin:
 )
