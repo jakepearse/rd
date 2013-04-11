@@ -111,8 +111,10 @@ def buytickets(request,event_id):
 
       
 def callback(request):
-  return HttpResponse(request.POST)
-
+  if request.method == 'POST':
+    data = request.POST
+    return render_to_response('callback.html',{'data':data})
+  return HttpResponse('Doh')
 
 def clear_tickets(request,ticket_id):
   ticket_id=int(ticket_id)
