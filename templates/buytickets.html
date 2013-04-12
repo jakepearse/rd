@@ -18,10 +18,8 @@
 			  <p>Please note: Tickets booked online are <em>non-refundable</em>.</p>
 		  </form>
 		  <p>If you want to change your order click <a href='/cleartickets/{{ticket.id}}/'>here<a></p>
-      </div>
     {% else %}
       {% ifequal tickets 0 %}
-		<div class="event_content">
 			<p>I'm sorry but the advance tickets are all sold out, or closed for this this event.</p>
 			<p>Don't worry we always keep plenty of tickets available on the door for each event.</p>
 		  {% else %}
