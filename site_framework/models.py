@@ -11,7 +11,7 @@ class Image(models.Model):
 class Article(models.Model):
   title=models.CharField(max_length=200)
   body=models.TextField()
-  image=models.ForeignKey(Image,blank=True,null=True)
+  image=models.ForeignKey(Image,blank=True,null=True,on_delete=models.SET_NULL)
   author=models.ForeignKey(User)
   publishedDate=models.DateField()
   active=models.BooleanField()
