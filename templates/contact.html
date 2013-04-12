@@ -38,13 +38,16 @@
 							vCard
 						</a>
 					</p>
-					<table class="contact_form">
-						<form action="/thankyou/" method="post">
+					<form action="/thankyou/" method="post">
+						<div class="contact_form">
 							{% csrf_token %}
-							{{ form.as_table }}
-                            <button type="submit" class="send">Send</button>
-						</form>
-					</table>
+							{% for field in form %}
+									{{ field.errors }}
+									{{ field.label_tag }}<br /> {{ field }}<br />
+							{% endfor %}
+						</div>
+						<button type="submit" class="send">Send</button>
+					</form>
 					<!-- 
 <form id="emailForm" name="emailForm" method="post" class="form-validate" action="/contact/">
 						<div class="contact_email">

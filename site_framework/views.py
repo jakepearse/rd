@@ -35,4 +35,7 @@ def thankyou(request):
 			if email_copy == 1:
 				recipients.append(sender)
 			send_mail(subject, message, sender, recipients)
-	return render_to_response('thanks.html',{'nav_list':nav_list, 'promotions':promotion_qs,})
+			return render_to_response('thanks.html',{'nav_list':nav_list, 'promotions':promotion_qs,})
+	else:
+		form = ContactForm()
+		return render_to_response("contact.html",{'form':form, 'nav_list':nav_list,'url':url,'promotions':promotion_qs},context_instance=RequestContext(request))
