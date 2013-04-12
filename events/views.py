@@ -4,7 +4,7 @@ from django.shortcuts import HttpResponse, render_to_response, redirect, get_obj
 from django.contrib.auth.models import User
 from django.template import RequestContext
 from django.core.mail import send_mail
-from forms import RegistrationForm, ticket_quantity, st_submit
+from forms import ticket_quantity, st_submit
 from django import forms
 from models import Ticket, Event, Promotion
 from navigation.views import navlist
@@ -20,44 +20,6 @@ nav_list = navlist()
 # that renders through a template which includes "base.html"
 # Yes! that would be everything!
 promotion_qs = Promotion.objects.filter(active=True)
-
-def testlogin(request,event_id):
-  form = RegistrationForm()
-  event_id = int(event_id)
-  event = Event.objects.get(id=event_id)
-  if request.user.is_authenticated():
-    return render_to_response('buytickets.html', {'has_account': True,'event':event})
-  else:
-    return redirect('adduser.html',{'event':event,'form':form,'promotions':promotion_qs},context_instance=RequestContext(request))
-    
-def register(request,event):
-    if request.user.is_authenticated():
-        # They already have an account; don't let them register again
-        return render_to_response('buytickets.html', {'has_account': True,'event':event})
-    elif request.method == 'POST':
-      form = RegistrationForm(request.POST)
-      if form.is_valid():
-        cd = form.cleaned_data
-        #make a user here
-        username = cd.get('username')
-        firstname = cd.get('firstname')
-        lastname = cd.get('lastname')
-        email = cd.get('email')
-        password = cd.get('password')
-        user = User.objects.create_user(username,email,password)
-        user.first_name = firstname
-        user.last_name = lastname
-        user.active = True
-        user.save()
-        newuser = authenticate(username=username, password=password)
-        if newuser.is_active:
-          login(request, newuser)
-          return redirect('buytickets.html',{'has_account':True,'event':event})
-      else:
-        return render_to_response('adduser.html',{'form':form,'event':event},context_instance=RequestContext(request))
-    else:
-        form = RegistrationForm()
-    return render_to_response('adduser.html',{'form':form,'event':event},context_instance=RequestContext(request))
     
 def showtickets(request):
   # TODO: Remove this view, I think its useless.
@@ -81,7 +43,8 @@ def eventdetail(request,promotion_id):
   # Should be called promotiondetail for similar reasons
   promotion_id = int(promotion_id)
   promotion = Promotion.objects.get(id=promotion_id)
-  events = Event.objects.filter(promotion__id=promotion_id)
+  today = datetime.date.today()
+  events = Event.objects.filter(promotion__id=promotion_id).order_by('date').filter(date__gte=today)
   return render_to_response('event_detail.html',
                               {'promotion':promotion,
                               'events':events,
@@ -92,7 +55,7 @@ def eventdetail(request,promotion_id):
 def buytickets(request,event_id):
   event_id = event_id
   event = Event.objects.get(id=event_id)
-  ticket_qs = Ticket.objects.filter(event__id=event_id)
+  ticket_qs = Ticket.objects.filter(event__id=event_id).exclude(status='pending')
   tickets_sold = 0
   for i in ticket_qs:
     tickets_sold += int(i.quantity)
@@ -165,7 +128,9 @@ def callback(request):
     'status':data.get('status'),
     'transaction_reference':data.get('transactionreference')
     }
-    ticket=Ticket.objects.get(id=data.get('orderreference'))
+    ticket_ref = request.POST['orderreference']
+    print ticket_ref
+    ticket=Ticket.objects.get(id=ticket_ref)
     ticket.first_name = results['first_name']
     ticket.last_name=results.get('last_name')
     ticket.postcode=results.get('postcode')
@@ -177,4 +142,3 @@ def clear_tickets(request,ticket_id):
   bad_ticket = Ticket.objects.get(id=ticket_id)
   bad_ticket.delete()
   return redirect('showevents')
-  

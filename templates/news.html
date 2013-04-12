@@ -1,0 +1,16 @@
+  {% extends "base.html" %}
+  {% block content %}
+<h2>RollerDisco.com</h2>
+  {% for article in articles %}
+  {% autoescape off %}
+    <article>
+      {% if article.showTitle == 1 %}
+      <h2>{{article.title}}</h2>
+      {% endif %}
+      <p>{{article.body}}</p>
+      <img class="article_image" src='/static{{article.image}}'>
+    </article>
+	{% endautoescape %}
+  {% endfor %}
+  {% endblock %}
+
