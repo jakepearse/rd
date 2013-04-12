@@ -10,18 +10,16 @@
 		  <p>Confirm your order details and click on the proceed to payment button below, you will be taken to our payment partners site.</p>
 		  <p>Have your payment details handy.</p>
 		  <form action="https://payments.securetrading.net/process/payments/choice" method="post">
-		  <table>
-		  {% csrf_token %}
-		  {{newform.as_table}}
-		  </table>
-		  <input class="buy_ticket" type='submit' value='Proceed to Payment >>'>
-		  <p>Please note: Tickets booked online are <em>non-refundable</em>.</p>
+			  <table>
+				  {% csrf_token %}
+				  {{newform.as_table}}
+			  </table>
+			  <input class="buy_ticket" type='submit' value='Proceed to Payment >>'>
+			  <p>Please note: Tickets booked online are <em>non-refundable</em>.</p>
 		  </form>
 		  <p>If you want to change your order click <a href='/cleartickets/{{ticket.id}}/'>here<a></p>
-      </div>
     {% else %}
       {% ifequal tickets 0 %}
-		<div class="event_content">
 			<p>I'm sorry but the advance tickets are all sold out, or closed for this this event.</p>
 			<p>Don't worry we always keep plenty of tickets available on the door for each event.</p>
 		  {% else %}
