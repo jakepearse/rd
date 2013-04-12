@@ -3,9 +3,9 @@ import datetime
 from django.contrib.auth.models import User
 # Create your models here.
 
-def valid_day(weekday,date_object):
-    if weekday != now(date_object):
-      raise ValidationError(u'Weekday %s does not match date!'%weekday)
+#def valid_day(weekday,date_object):
+    #if weekday != now(date_object):
+      #raise ValidationError(u'Weekday %s does not match date!'%weekday)
       
       
 class Promotion(models.Model):
@@ -30,14 +30,20 @@ class Event(models.Model):
 
 class Ticket(models.Model):
   event=models.ForeignKey(Event)
-  user=models.ForeignKey(User,null=True)
+  first_name=models.CharField(max_length=255,blank=True)
+  last_name=models.CharField(max_length=255,blank=True)
+  name_prefix=models.CharField(max_length=255,blank=True)
+  telephone=models.CharField(max_length=255,blank=True)
+  postcode=models.CharField(max_length=255,blank=True)
+  email=models.EmailField(blank=True)
+  st_authCode=models.CharField(max_length=255,blank=True)
   quantity=models.IntegerField()
   totalCost=models.IntegerField()
   status=models.CharField(max_length=25,default='pending')
-  stResponseCode=models.CharField(max_length=255,null=True,blank=True)
-  stRefNumber=models.CharField(max_length=255,null=True,blank=True)
-  stResponseText=models.CharField(max_length=255, null=True,blank=True)
+  st_SecurityResponseCode=models.CharField(max_length=255,null=True,blank=True)
+  st_RefNumber=models.CharField(max_length=255, blank=True)
+  st_ErrorCode=models.CharField(max_length=255, blank=True)
   orderPlaced=models.DateTimeField(default=datetime.datetime.now())
   def __unicode__(self):
-    return "%s %s %s"%(self.user,self.event,self.status)
+    return "%s, %s %s %s"%(self.last_name,self.first_name,self.event,self.status)
   

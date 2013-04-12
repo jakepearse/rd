@@ -150,8 +150,27 @@ def buytickets(request,event_id):
 def callback(request):
   if request.method == 'POST':
     data = request.POST
-    return render_to_response('callback.html',{'data':data})
-  return HttpResponse('Doh')
+    results={
+    'authcode':data.get('authcode'),
+    'billing_email':data.get('billingemail'),
+    'first_name':data.get('billingfirstname'),
+    'last_name':data.get('billinglastname'),
+    'postcode':data.get('billingpostcode'),
+    'name_prefix':data.get('billingprefixname'),
+    'telephone':data.get('billingtelephone'),
+    'error_code':data.get('errorcode'),
+    'main_amount':data.get('mainamount'),
+    'order_reference':data.get('orderreference'),
+    'security_response_code':data.get('securityresponsesecuritycode'),
+    'status':data.get('status'),
+    'transaction_reference':data.get('transactionreference')
+    }
+    ticket=Ticket.objects.get(id=data.get('orderreference'))
+    ticket.first_name = results['first_name']
+    ticket.last_name=results.get('last_name')
+    ticket.postcode=results.get('postcode')
+    return render_to_response('callback.html',{'data':results})
+  return HttpResponse(404)
 
 def clear_tickets(request,ticket_id):
   ticket_id=int(ticket_id)

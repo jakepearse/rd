@@ -2,7 +2,6 @@ from django import forms
 import datetime
 from django.contrib import admin
 from events.models import Promotion,Event,Ticket
-from django.contrib.auth.models import User
 from site_framework.admin import CommonMedia
 
 
@@ -41,9 +40,9 @@ class EventAdmin(admin.ModelAdmin):
   
 
 class TicketAdmin(admin.ModelAdmin):
-  list_display=['id','event','user','status','quantity','stRefNumber',]
+  list_display=['id','event','status','quantity','st_RefNumber',]
   list_filter=('event__date','event__promotion','status',)
-  search_fields=['user__first_name','user__last_name','user__email',]
+  search_fields=['first_name','last_name','email',]
 
 
 ### Now register with the admin site
