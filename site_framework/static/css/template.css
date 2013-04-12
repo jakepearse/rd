@@ -43,6 +43,12 @@ a img { /* this selector removes the default blue border displayed in some brows
 	height: 626px;
 	background-image: url(../images/roller_girl.png);
 }
+#side_girl {
+	background: url("/static/images/roller_girl.png") no-repeat scroll 770px 150px transparent;
+	min-height: 800px;
+	width: 100%;	
+	
+}
 #logo_holder {
 	position: absolute;
 	z-index: 9;
@@ -70,7 +76,6 @@ a img { /* this selector removes the default blue border displayed in some brows
     height: 115px;
 }
 #main_col {
-	position: relative;
 	float: left;
 }
 #right_col {
@@ -240,8 +245,6 @@ nav{
 	display: inline;
 	list-style-type: none;
 	padding: .5em;
-	border-right: : solid 1px #fff;	
-	border-left: solid 1px #fff;
 	background-color: #ddd;
 }
 #nav_tabs li a {
