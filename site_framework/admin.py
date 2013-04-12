@@ -1,5 +1,5 @@
 from django.contrib import admin
-from site_framework.models import Article
+from site_framework.models import Article, Image
 
 class CommonMedia:
   js = (
@@ -14,3 +14,5 @@ admin.site.register(Article,
   title  = ('title',),
   search_fields = ['title',],
   Media = CommonMedia,)
+
+admin.site.register(Image)

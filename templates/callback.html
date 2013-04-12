@@ -1,6 +1,6 @@
  {% extends "base.html" %}
   {% block content %}
-    {% for item in data %}
-      <p>{{ item }}</p>
+    {% for key,value in data.items %}
+      <p>{{ key }} {{ value }}</p>
     {% endfor %}
   {% endblock %}
