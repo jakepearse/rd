@@ -2,22 +2,26 @@
 	<div class="safteyFirst">
 		<h3>Safety First</h3>
 	</div>
-	<div class="event_menu">
+	<div class="moduletable_event_menu">
 		<h3>Events</h3>
-		  <ul>
+		  <ul class="latestnews_event_menu">
 			{% for promotion in promotions %}
-				<li><a href="/showevents/{{promotion.id}}/eventdetail">{{promotion.title}}</a></li>
+				<li class="latestnews_event_menu"><a class="latestnews_event_menu" href="/showevents/{{promotion.id}}/eventdetail">{{promotion.title}}</a></li>
 			{% endfor %}
 			<br />
 		</ul>
 	</div>
-	<div class="sidebar_buy_img">
-		<a href="/showevents/">
-			<img title="buy tickets" alt="buy tickets" src="/static/images/ticket_button.gif">
-		</a>
-		  <img width="150" height="87" src="http://www.securetrading.com/images/logo_clip_image001.jpg" alt="Payment Processing by SecureTrading">
+	<div class="buyTickets">
+		<!-- Simple Image Holder 1.5.12 starts here -->
+		<div style="text-align:center;">
+			<a href="/showevents/">
+				<img border="0" title="buy tickets" alt="buy tickets" src="/static/images/ticket_button.gif">
+			</a>
+			  <img border="0" width="150" height="87" src="http://www.securetrading.com/images/logo_clip_image001.jpg" alt="Payment Processing by SecureTrading">
+		</div>
+		<!-- Simple Image Holder 1.5.12 ends here -->
 	</div>
-	<hr class="clear">	
+	<hr style="clear: both;">	
 	<div id="social_network_icons">
 		<ul class="soc_net">
 			<li><a target="_blank" href="http://www.youtube.com/user/RenaissanceRooms"><img alt="You Tube" src="/static/images/youtube_icon.png"></a></li>

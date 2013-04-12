@@ -62,9 +62,6 @@ a img { /* this selector removes the default blue border displayed in some brows
 	width: 200px;
 	border: 0px solid #fff;
 }
-#left_col h3 {
-	text-align: center;
-}
 .safteyFirst {
     background: url("../images/notice_button.png") no-repeat scroll 10px 35px transparent;
     height: 115px;
@@ -87,7 +84,6 @@ a img { /* this selector removes the default blue border displayed in some brows
     border-radius: 15px;
 }
 .promotionBox img {
-	width: 120px;
     margin: 5px 30px;
 }
 .youtubeIframe {
@@ -256,7 +252,7 @@ li#current {
 	top: 145px;
 	left: 5px;
 }
-.event_menu{	
+.moduletable_event_menu{	
 	background-image: url(../images/jot.png);
 	position: relative;	
 	width: 90%;
@@ -265,15 +261,12 @@ li#current {
 	padding-left: 2px;
 	padding-right: 2px;
 }
-.event_menu ul{
+.moduletable_event_menu ul{
 	text-indent: 1em;
 }
-.menu ul li a{
-	font-size: 1em;
+.moduletable_event_menu ul li a{
+font-size: 1em;
 }	
-.sidebar_buy_img {
-	text-align:center;
-}
 
 /*////////// FOOTER //////////*/
 
@@ -331,7 +324,7 @@ footer {
 	position: relative;
 	left: 7px;
 }
-.login{
+.moduletable_login{
 	position: relative;
 	float: left;
 	top: 5px;
@@ -342,10 +335,10 @@ footer {
 	text-align: right;
 	font-size: .7em;
 }
-.login {
+.moduletable_login {
 	color: #000;
 }
-.login a {
+.moduletable_login a {
 	color:  #EA078C;
 	font-size: 1.1em;
 }
