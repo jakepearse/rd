@@ -32,7 +32,7 @@ def thankyou(request):
 			sender = form.cleaned_data['sender']
 			email_copy = form.cleaned_data['email_copy']
 			recipients = ['guiltyg118@gmail.com']
-			if email_copy == 1:
+			if email_copy == "on":
 				recipients.append(sender)
 			send_mail(subject, message, sender, recipients)
 			return render_to_response('thanks.html',{'nav_list':nav_list, 'promotions':promotion_qs,})
