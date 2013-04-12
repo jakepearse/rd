@@ -12,7 +12,7 @@
       <h2>{{article.title}}</h2>
       {% endif %}
       <p>{{article.body}}</p>
-      <img class="article_image" src={{article.image}}>
+      <img class="article_image" src='/static{{article.image}}'>
     </article>
 	{% endautoescape %}
   {% endfor %}
