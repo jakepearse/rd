@@ -2,8 +2,6 @@ from django.db import models
 import datetime
 from django.contrib.auth.models import User
 # Create your models here.
-# hello i am prakash
-import now
 
 def valid_day(weekday,date_object):
     if weekday != now(date_object):
@@ -18,7 +16,7 @@ class Promotion(models.Model):
   price=models.DecimalField(max_digits=4,decimal_places=2)
   ticketAllowance=models.IntegerField()
   ageRestriction=models.IntegerField()
-  flyer=models.ImageField(upload_to="static/images/upload",default="static/images/rollerdisco_logo_thumb.png")
+  flyer=models.ImageField(upload_to='flyers',default="static/images/rollerdisco_logo_thumb.png")
   description=models.TextField(null=True)
   active=models.BooleanField()
   def __unicode__(self):

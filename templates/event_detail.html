@@ -2,20 +2,24 @@
 {% block content %}
 <h2>{{promotion.title}}</h2>
 <div class="promotionBox">
-	<img src="{{promotion.flyer}}" />
+	<img src="/static/images/upload/{{promotion.flyer}}" />
 </div>
 <br class="clear" />
 <p><strong>Please be aware this event is for {{promotion.ageRestriction}} Years and above only.</strong></p>
 <p>Doors open at: {{promotion.startTime}}</p>
 <p>Event Finishes at: {{promotion.finishTime}}</p>
 <p>Ticket price (includes Skate Hire): &pound;{{promotion.price}} per person</p>
+<hr>
+{% autoescape off %}
+<p>{{promotion.description}}</p>
+{% endautoescape %}
 <ul>
 {% for event in events %}
 	<li><a href="/buytickets/{{event.id}}">
 		<div class="promotionBox">
 			{{event.date}}
-			<img src="{{event.promotion.flyer}}" />
-			Price: &pound;{{event.promotion.price}}
+			<img src="/static/images/upload/{{event.promotion.flyer}}" />
+			<p style="color:pink;">Price: &pound;{{event.promotion.price}}</p>
 		</div>
 	</a></li>
 {% endfor %}
