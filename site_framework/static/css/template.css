@@ -84,9 +84,7 @@ a img { /* this selector removes the default blue border displayed in some brows
     border-radius: 15px;
 }
 .promotionBox img {
-    height: 90px;
     margin: 5px 30px;
-    width: 95px;
 }
 .youtubeIframe {
 	width: 560px;
@@ -193,7 +191,13 @@ header {
 .leading {
 	padding: 7px;
 }
-
+.contact_form {
+	margin: 0 0 30px 0;
+	text-align: left;
+}
+.contact_form tr {
+	margin-bottom: 40px;
+}
 /*////////// NAV //////////*/
 
 nav{
@@ -361,7 +365,18 @@ input.button_login:hover{
 .button_login{
 	background-color: #000;
 }
-	
+.send {
+	position: absolute;
+	bottom: 0;
+	margin: 10px 5px;
+	background-color: #000000;
+    border: 2px solid #FFFFFF;
+    color: #FFFFFF;
+    cursor: pointer;
+}	
+.send:hover {
+	color:  #EA078C;	
+}
 li {
 	list-style-type: none;
 }

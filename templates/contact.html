@@ -24,38 +24,8 @@
 							<span class="marker">
 								<img alt="E-mail: " src="/static/images/emailButton.png">
 							</span>
-<!-- 
-							 <script type="text/javascript" language="JavaScript">
-								 &lt;!~~
-								 var prefix = 'm&amp;#97;&amp;#105;lt&amp;#111;:';
-								 var suffix = '';
-								 var attribs = '';
-								 var path = 'hr' + 'ef' + '=';
-								 var addy22243 = '&amp;#105;nf&amp;#111;' + '&amp;#64;';
-								 addy22243 = addy22243 + 'r&amp;#111;ll&amp;#101;rd&amp;#105;sc&amp;#111;' + '&amp;#46;' + 'c&amp;#111;m';
-								 document.write( '&lt;a ' + path + '\'' + prefix + addy22243 + suffix + '\'' + attribs + '&gt;' );
-								 document.write( addy22243 );
-								 document.write( '&lt;\/a&gt;' );
-								 //~~&gt;
-							 </script>
- -->
 							 <a href="mailto:info@rollerdisco.com">info@rollerdisco.com</a>
-<!-- 
-							 <script type="text/javascript" language="JavaScript">
-								 &lt;!~~
-								 document.write( '&lt;span style=\'display: none;\'&gt;' );
-								 //~~&gt;
-							 </script>
- -->
 							 <span style="display: none;">This e-mail address is being protected from spambots. You need JavaScript enabled to view it.
-<!-- 
-								 <script type="text/javascript" language="JavaScript">
-									 &lt;!~~
-									 document.write( '&lt;/' );
-									 document.write( 'span&gt;' );
-									 //~~&gt;
-								 </script>
- -->
 							 </span><br>
 							 <span class="marker">
 							 	<img alt="Telephone: " src="/static/images/con_tel.png">
@@ -68,33 +38,41 @@
 							vCard
 						</a>
 					</p>
-					<form id="emailForm" name="emailForm" method="post" class="form-validate" action="/contact">
+					<form action="/thankyou/" method="post">
+						<div class="contact_form">
+							{% csrf_token %}
+							{% for field in form %}
+									{{ field.errors }}
+									{{ field.label_tag }}<br /> {{ field }}<br />
+							{% endfor %}
+						</div>
+						<button type="submit" class="send">Send</button>
+					</form>
+					<!-- 
+<form id="emailForm" name="emailForm" method="post" class="form-validate" action="/contact/">
 						<div class="contact_email">
 							<label for="contact_name">Enter your Name:</label>
 							<input type="text" value="" size="30" id="contact_name" name="name" autofocus />
 						</div>
 						<div class="contact_email">
 							<label for="contact_email" id="contact_emailmsg">E-mail address *:</label>
-							<input type="email" maxlength="100" value="" size="30" name="email" id="contact_email" required />
+							<input type="email" maxlength="100" value="" size="30" name="sender" id="contact_email" required />
 						</div>
 						<div class="contact_email">
 							<label for="contact_subject">Message Subject:</label>
 							<input type="text" value="" class="inputbox" size="30" id="contact_subject" name="subject">
 						</div>
 						<div class="contact_email">
-							<label class="textarea" for="contact_text" id="contact_textmsg">Enter your Message *:</label>
-							<textarea cols="40" rows="10" id="contact_text" name="text" required></textarea>
+							<label class="textarea" for="contact_text" id="contact_textmsg">Enter your Message *:</label><br />
+							<textarea cols="40" rows="10" id="contact_text" name="message" required></textarea>
 						</div>
 						<div class="contact_email_checkbox">
 							<input type="checkbox" value="1" id="contact_email_copy" name="email_copy" />
 							<label class="copy" for="contact_email_copy">E-mail a copy of this message to your own address.	</label>
 						</div>
 						<button type="submit" class="button validate">Send</button>
-						<input type="hidden" value="contact" name="view">
-						<input type="hidden" value="1" name="id">
-						<input type="hidden" value="submit" name="task">
-						<input type="hidden" value="1" name="0e05e7e996aa1f7c1dacbd2e0b88ee83">
 					</form>
+ -->
 				</div>
 			</div><!-- end leading -->
 		</div><!-- end content -->

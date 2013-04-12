@@ -21,6 +21,43 @@ nav_list = navlist()
 # Yes! that would be everything!
 promotion_qs = Promotion.objects.filter(active=True)
 
+def testlogin(request,event_id):
+  form = RegistrationForm()
+  event_id = int(event_id)
+  event = Event.objects.get(id=event_id)
+  if request.user.is_authenticated():
+    return render_to_response('buytickets.html', {'has_account': True,'event':event})
+  else:
+    return redirect('adduser.html',{'event':event,'form':form,'promotions':promotion_qs},context_instance=RequestContext(request))
+    
+def register(request,event):
+    if request.user.is_authenticated():
+        # They already have an account; don't let them register again
+        return render_to_response('buytickets.html', {'has_account': True,'event':event})
+    elif request.method == 'POST':
+      form = RegistrationForm(request.POST)
+      if form.is_valid():
+        cd = form.cleaned_data
+        #make a user here
+        username = cd.get('username')
+        firstname = cd.get('firstname')
+        lastname = cd.get('lastname')
+        email = cd.get('email')
+        password = cd.get('password')
+        user = User.objects.create_user(username,email,password)
+        user.first_name = firstname
+        user.last_name = lastname
+        user.active = True
+        user.save()
+        newuser = authenticate(username=username, password=password)
+        if newuser.is_active:
+          login(request, newuser)
+          return redirect('buytickets.html',{'has_account':True,'event':event})
+      else:
+        return render_to_response('adduser.html',{'form':form,'event':event},context_instance=RequestContext(request))
+    else:
+        form = RegistrationForm()
+    return render_to_response('adduser.html',{'form':form,'event':event},context_instance=RequestContext(request))
     
 def showtickets(request):
   # TODO: Remove this view, I think its useless.
