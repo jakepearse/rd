@@ -1,28 +1,28 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>{{promotion.title}}</h2>
-<div class="promotionBox">
-	<img src="/static/images/upload/{{promotion.flyer}}" />
-</div>
-<br class="clear" />
-<p><strong>Please be aware this event is for {{promotion.ageRestriction}} Years and above only.</strong></p>
-<p>Doors open at: {{promotion.startTime}}</p>
-<p>Event Finishes at: {{promotion.finishTime}}</p>
-<p>Ticket price (includes Skate Hire): &pound;{{promotion.price}} per person</p>
-<hr>
-{% autoescape off %}
-<p>{{promotion.description}}</p>
-{% endautoescape %}
-<ul>
-{% for event in events %}
-	<li><a href="/buytickets/{{event.id}}">
-		<div class="promotionBox">
-			{{event.date}}
-			<img src="/static/images/upload/{{event.promotion.flyer}}" />
-			<p style="color:pink;">Price: &pound;{{event.promotion.price}}</p>
-		</div>
-	</a></li>
-{% endfor %}
-</ul>
-<br class="clear" />
+	<h2>{{promotion.title}}</h2>
+	<br class="clear" />
+	<div class="event_content">
+		<p><strong>Please be aware this event is for {{promotion.ageRestriction}} Years and above only.</strong></p>
+		<p>Doors open at: {{promotion.startTime}}</p>
+		<p>Event Finishes at: {{promotion.finishTime}}</p>
+		<p>Ticket price (includes Skate Hire): &pound;{{promotion.price}} per person</p>
+	</div>
+	<hr>
+	{% autoescape off %}
+	<p>{{promotion.description}}</p>
+	{% endautoescape %}
+	<ul>
+	{% for event in events %}
+		<li><a href="/buytickets/{{event.id}}">
+			<div class="promotionBox">
+				{{event.date}}
+				<img src="/static/images/upload/{{event.promotion.flyer}}" />
+				<br />
+				Price: &pound;{{event.promotion.price}}
+			</div>
+		</a></li>
+	{% endfor %}
+	</ul>
+	<br class="clear" />
 {% endblock %}
