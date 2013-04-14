@@ -15,12 +15,15 @@ form = ContactForm()
 def frontpage(request):
   url=request.path
   if url == '/':
-    front_page_articles = Article.objects.filter(front_page=True).order_by("publishedDate")
+    front_page_articles = Article.objects.filter(front_page=True).filter(active=True).order_by("publishedDate")
     return render_to_response("front_page.html",{'articles':front_page_articles,'nav_list':nav_list,'promotions':promotion_qs,'url':url})
   elif url == '/contact/':
     return render_to_response("contact.html",{'form':form, 'nav_list':nav_list,'url':url,'promotions':promotion_qs},context_instance=RequestContext(request))
   elif url == '/find/': 
     return render_to_response("find.html",{'nav_list':nav_list,'url':url,'promotions':promotion_qs,})
+  elif url =='/news/':
+    articles_qs= Article.objects.filter(front_page=False).filter(active=True)
+    return render_to_response('news.html',{'articles':articles_qs,'promotions':promotion_qs,'nav_list':nav_list,'url':url,})
     
 def thankyou(request):
 	if request.method == 'POST': 

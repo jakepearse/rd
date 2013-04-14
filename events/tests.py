@@ -7,6 +7,8 @@ Replace this with more appropriate tests for your application.
 
 from django.test import TestCase
 from django.test.client import Client
+from events.models import Ticket,Event,Promotion
+import datetime
 
 
 class SimpleTest(TestCase):
@@ -19,6 +21,10 @@ class SimpleTest(TestCase):
 class CallbackTest(TestCase):
   def setUp(self):
     self.client = Client()
+    self.p = Promotion()
+    self.e = Event(promotion=self.p,date=datetime.date.today())
+    self.t = Ticket(id=1,event=self.e)
+    print self.t
   def test_callback_post(self):
     response = self.client.post('/callback/',{'authcode':'TEST',
                                               'billingemail':'test@callback.com',
@@ -29,7 +35,7 @@ class CallbackTest(TestCase):
                                               'billingtelephone':'0987654321',
                                               'errorcode':'0',
                                               'mainamount':'50.00',
-                                              'orderreference':'83',
+                                              'orderreference':'1',
                                               'securityresponsesecuritycode':'not yet',
                                               'status':'100',
                                               'transactionreference':'7-9-123456',

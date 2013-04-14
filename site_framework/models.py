@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 class Image(models.Model):
   ImageFile=models.ImageField(upload_to='articles',blank=True)
   def __unicode__(self):
-    return "/static/uploads/%s"%(self.ImageFile)
+    return "/images/upload/%s"%(self.ImageFile)
 
 class Article(models.Model):
   title=models.CharField(max_length=200)

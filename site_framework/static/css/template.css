@@ -43,6 +43,12 @@ a img { /* this selector removes the default blue border displayed in some brows
 	height: 626px;
 	background-image: url(../images/roller_girl.png);
 }
+#side_girl {
+	background: url("/static/images/roller_girl.png") no-repeat scroll 770px 150px transparent;
+	min-height: 800px;
+	width: 100%;	
+	
+}
 #logo_holder {
 	position: absolute;
 	z-index: 9;
@@ -62,12 +68,14 @@ a img { /* this selector removes the default blue border displayed in some brows
 	width: 200px;
 	border: 0px solid #fff;
 }
+#left_col h3 {
+	text-align: center;
+}
 .safteyFirst {
     background: url("../images/notice_button.png") no-repeat scroll 10px 35px transparent;
     height: 115px;
 }
 #main_col {
-	position: relative;
 	float: left;
 }
 #right_col {
@@ -84,12 +92,31 @@ a img { /* this selector removes the default blue border displayed in some brows
     border-radius: 15px;
 }
 .promotionBox img {
+	width: 120px;
     margin: 5px 30px;
 }
 .youtubeIframe {
 	width: 560px;
 	height: 315px;
 	margin: 0 auto;
+}
+.event_content {
+	background: #fff;
+	border-radius: 15px;
+	padding: 10px;
+	width: 97%;
+}
+.event_content, .event_content p, .event_content label {
+	color: #000;
+}
+.event_content h3 {
+	color: #C7228C;
+}
+.event_content .errorlist li {
+	color: red;
+}
+.event_content .special_text {
+	color: #EE82EE;
 }
 .clear {
 	clear: both;
@@ -218,8 +245,6 @@ nav{
 	display: inline;
 	list-style-type: none;
 	padding: .5em;
-	border-right: : solid 1px #fff;	
-	border-left: solid 1px #fff;
 	background-color: #ddd;
 }
 #nav_tabs li a {
@@ -234,7 +259,7 @@ li#current {
 	top: 145px;
 	left: 5px;
 }
-.moduletable_event_menu{	
+.event_menu{	
 	background-image: url(../images/jot.png);
 	position: relative;	
 	width: 90%;
@@ -243,12 +268,15 @@ li#current {
 	padding-left: 2px;
 	padding-right: 2px;
 }
-.moduletable_event_menu ul{
+.event_menu ul{
 	text-indent: 1em;
 }
-.moduletable_event_menu ul li a{
-font-size: 1em;
+.menu ul li a{
+	font-size: 1em;
 }	
+.sidebar_buy_img {
+	text-align:center;
+}
 
 /*////////// FOOTER //////////*/
 
@@ -306,7 +334,7 @@ footer {
 	position: relative;
 	left: 7px;
 }
-.moduletable_login{
+.login{
 	position: relative;
 	float: left;
 	top: 5px;
@@ -317,10 +345,10 @@ footer {
 	text-align: right;
 	font-size: .7em;
 }
-.moduletable_login {
+.login {
 	color: #000;
 }
-.moduletable_login a {
+.login a {
 	color:  #EA078C;
 	font-size: 1.1em;
 }
@@ -367,10 +395,18 @@ input.button_login:hover{
 }
 .send {
 	position: absolute;
-	bottom: 0;
+	bottom: 10px;
 	margin: 10px 5px;
 	background-color: #000000;
     border: 2px solid #FFFFFF;
+    color: #FFFFFF;
+    cursor: pointer;
+}	
+.buy_ticket {
+	margin: 10px 5px;
+	padding: 3px 5px;
+	background-color: #000;
+    border: 2px solid #C7228C;
     color: #FFFFFF;
     cursor: pointer;
 }	
@@ -454,7 +490,7 @@ a.latestnews {
 
 .slider_container_days h4, .slider_container_family h4 {
 	line-height: 0; 
-	width: 15%;
+	width: 18%;
 	float: right;
 	opacity: none;
 }

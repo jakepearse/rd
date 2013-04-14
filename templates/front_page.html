@@ -1,20 +1,21 @@
-  {% extends "base.html" %}
-  {% block content %}
-<h2>RollerDisco.com</h2>
-  <div class="youtubeIframe">
-  	<iframe width="560" height="315" src="http://www.youtube.com/embed/reowCcau1E4?rel=0" mce_src="http://www.youtube.com/embed/reowCcau1E4?rel=0" frameborder="0" allowfullscreen=""></iframe>
-  </div>
-  <br />
-  {% for article in articles %}
-  {% autoescape off %}
-    <article>
-      {% if article.showTitle == 1 %}
-      <h2>{{article.title}}</h2>
-      {% endif %}
-      <p>{{article.body}}</p>
-      <img class="article_image" src={{article.image}}>
-    </article>
+{% extends "base.html" %}
+{% block content %}
+<!-- 
+	<h2>RollerDisco.com</h2>
+	<div class="youtubeIframe">
+		<iframe width="560" height="315" src="http://www.youtube.com/embed/reowCcau1E4?rel=0" mce_src="http://www.youtube.com/embed/reowCcau1E4?rel=0" frameborder="0" allowfullscreen=""></iframe>
+	</div>
+ -->
+	<br />
+	{% for article in articles %}
+	{% autoescape off %}
+		<article>
+			{% if article.showTitle == 1 %}
+			<h2>{{article.title}}</h2>
+			{% endif %}
+			<p>{{article.body}}</p>
+			<img class="article_image" src='/static{{article.image}}'>
+		</article>
 	{% endautoescape %}
-  {% endfor %}
-  {% endblock %}
-
+{% endfor %}
+{% endblock %}

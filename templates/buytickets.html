@@ -1,38 +1,35 @@
 {% extends "base.html" %}
   {% block content %}
     <h2>{{event.promotion.title}}</h2>
-    <h3>{{event.date}}</h3>
-    {% if newform %}
-      <p> you have requested <strong>{{ordered}}</strong> tickets </p>
-      <p> The total cost will be: <strong>&pound;{{value}}</strong></p>
-      <p>All transactions are processed by our secure payment partner, rollerdisco
-      never record any card details.</p>
-      <p>Confirm your order details and click on the proceed to payment button below,
-      you will be taken to our payment partners site.</p>
-      <p>Have your payment details handy.</p>
-      <form action="https://payments.securetrading.net/process/payments/choice" method="post">
-      <table>
-      {% csrf_token %}
-      {{newform.as_table}}
-      </table>
-      <input type='submit' value='Proceed to payment'>
-      <p>Please note: Tickets booked online are <em>non-refundable</em></p>
-      </form>
-      <p>If you want to change your order click <a href='/cleartickets/{{ticket.id}}/'>here<a></p>
+    <div class="event_content">
+		<h3>{{event.date}}</h3>
+		{% if newform %}
+		  <p>You have requested <strong>{{ordered}}</strong> {% ifequal ordered 1 %} ticket.{% else %} tickets.{% endifequal %}</p>
+		  <p>The total cost will be: <strong>&pound;{{value}}</strong>.</p>
+		  <p>All transactions are processed by our secure payment partner, rollerdisco never record any card details.</p>
+		  <p>Confirm your order details and click on the proceed to payment button below, you will be taken to our payment partners site.</p>
+		  <p>Have your payment details handy.</p>
+		  <form action="https://payments.securetrading.net/process/payments/choice" method="post">
+			  <table>
+				  {% csrf_token %}
+				  {{newform.as_table}}
+			  </table>
+			  <input class="buy_ticket" type='submit' value='Proceed to Payment >>'>
+			  <p>Please note: Tickets booked online are <em>non-refundable</em>.</p>
+		  </form>
+		  <p>If you want to change your order click <a href='/cleartickets/{{ticket.id}}/'>here<a></p>
     {% else %}
       {% ifequal tickets 0 %}
-        <p>I'm sorry but the advance tickets are all sold out, or closed for this this event.</p>
-        <p>Don't worry we always keep plenty of tickets available on the door for each event.</p>
-      {% else %}
-        <p>remaining tickets = {{tickets}}</p>
-        <form action="" method="post">
-          <table>
-            {% csrf_token %}
-            {{form.as_table}}
-          </table>
-          <input type="submit" value="Submit">
-        </form>
-
+			<p>I'm sorry but the advance tickets are all sold out, or closed for this this event.</p>
+			<p>Don't worry we always keep plenty of tickets available on the door for each event.</p>
+		  {% else %}
+			<p><b>Remaining tickets</b> = {{tickets}}</p>
+			<form action="" method="post">
+				{% csrf_token %}
+				{{form.as_p}}
+			  <input class="buy_ticket" type="submit" value="Next >>">
+			</form>
+		</div>
       {% endifequal %}
     {% endif %}
   {% endblock %}
