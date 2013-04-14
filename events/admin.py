@@ -43,6 +43,7 @@ class TicketAdmin(admin.ModelAdmin):
   list_display=['id','event','status','quantity','st_RefNumber',]
   list_filter=('event__date','event__promotion','status',)
   search_fields=['first_name','last_name','email',]
+  raw_id_field = 'event'
 
 
 ### Now register with the admin site

@@ -26,7 +26,7 @@ class Event(models.Model):
   date=models.DateField()
   promotion=models.ForeignKey(Promotion)
   def __unicode__(self):
-    return "%d-%d-%d, %d %s"%(self.date.day,self.date.month,self.date.year,self.date.isoweekday(),self.promotion.title)
+    return "%d-%d-%d, %s"%(self.date.day,self.date.month,self.date.year,self.promotion.title)
 
 class Ticket(models.Model):
   event=models.ForeignKey(Event)
