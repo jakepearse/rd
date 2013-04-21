@@ -1,7 +1,8 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
 	<head>
-  		<link rel="stylesheet" type="text/css" href="/static/css/template.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="/static/css/bootstrap-responsive.css" rel="stylesheet">
 		<title>Roller Disco</title>
 		<!-- rhinoslider JavaScript and CSS -->
 		<link type="text/css" rel="stylesheet" href="/static/css/rhinoslider-1.05.css" />
@@ -210,18 +211,26 @@
 		</style>
 	</head>
 	<body>
-		<div class="wrapper">
+		<div class="container-fluid">
 			<div id="side_girl">
 			<header>
 				<div id="logo_holder"></div>
 				<div id="grey_banner"></div>
 				<div id="pink_strap"></div>  			
 			</header>
+      <div class="row-fluid">
+        <div class="span2">
 				{% include "left_column.html" %}
-			<div id="main_col">
+			</div>
+      </div>
+      <div id="main_col">
 				<div id="content">
+          <div class="row-fluid">
+            <div class="span10">
 					{% block content %}
 					{% endblock %}
+          </div>
+          </div>
 				</div>
 			</div>
 			{% include "nav.html" %}
