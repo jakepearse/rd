@@ -34,7 +34,7 @@ def thankyou(request):
 			message = form.cleaned_data['message']
 			sender = form.cleaned_data['sender']
 			email_copy = form.cleaned_data['email_copy']
-			recipients = ['guiltyg118@gmail.com']
+			recipients = ['jake@rollerdisco.com']
 			if email_copy == 1:
 				recipients.append(sender)
 			send_mail(subject, message, sender, recipients)
