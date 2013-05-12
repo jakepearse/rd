@@ -16,6 +16,7 @@
 	{% autoescape off %}
 	<p>{{promotion.description}}</p>
 	{% endautoescape %}
+  <h2>Book Your Tickets Now!</h2>
 	<ul>
 	{% for event in events %}
 		<li><a href="/buytickets/{{event.id}}">
