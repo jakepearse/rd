@@ -2,4 +2,107 @@
 	<div class="moduletable">
 		<div>Copyright &copy; 2013 Roller Disco. All Rights Reserved.</div>
 	</div>
+  <script>
+  // run immediatley - place in footer make sure you have loaded in a jQuery library from somewhere first e.g 
+// from http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js
+
+// self calling function will run once loaded
+(function(){
+
+	// the wrapper object
+	EUCookie = {
+		
+		// whether they have confirmed they have read the page about cookies and how to turn them on/off etc
+		confirmed : false,
+
+		// Confirm that the user has read the message and then hide the message by sliding it back up
+		Confirm : function(e){   
+			
+			var self = this;
+		   
+			// create cookie for 365 days
+			self.CreateCookie("EUCookie",1,365);  
+		   
+			// slide back in the cookie bar
+			$("#cookieWarning").animate({
+				height: 0
+			}, 300, function(){
+				$("#cookieWarning").css("display", "none");
+			});
+		   
+			return false;
+		 },
+
+		// Check whether the cookie that tells us they have read the terms previously exists
+		CheckEUCookie : function(){
+
+			var self = this,
+				val = self.ReadCookie("EUCookie");
+		   
+			// if our cookie has been set
+			if(typeof(val)!=undefined && val==1){   
+				self.confirmed = true;
+			}
+		 
+			return self.confirmed;
+		},
+
+		// Create a cookie
+		CreateCookie : function(name,value,days) {
+		 
+			if (days){
+				var date = new Date();
+				date.setTime(date.getTime()+(days*24*60*60*1000));
+				var expires = "; expires="+date.toGMTString();
+			}else{
+				var expires = "";
+			}
+		   
+			document.cookie = name+"="+escape(value)+expires+"; path=/";
+		},
+
+		// Read a cookie
+		ReadCookie : function(name){
+		   
+			var nameEQ = name + "=";
+			var ca = document.cookie.split(';');
+			for(var i=0;i < ca.length;i++) {
+				var c = ca[i];
+				while (c.charAt(0)==' ') c = c.substring(1,c.length);
+				if (c.indexOf(nameEQ) == 0){
+					// found cookie
+					var r = unescape(c.substring(nameEQ.length,c.length));    
+					return r;
+				}
+			}
+			
+			return null;
+		 }
+	};
+
+	// this code will run as soon as its reached
+
+	// add a click event to the button so when they confirm they have read the terms the message disappears - make sure your button has the same ID!
+	$("#cookie-close-button").click(function(){EUCookie.Confirm()});
+ 
+	// if a cookie has been set then hide the HTML with the message in the source as there is no need for it
+	if(EUCookie.CheckEUCookie())
+	{  
+		// cookie already exists set so hide the HTML box holding the message - this will already be in your HTML ( see test page >> http://www.strictly-software.com/scripts/downloads/EUCookie.htm )
+		$("#cookieWarning").css("display", "none");
+	}else{
+  
+		// Otherwise slide out the form - set height and display to nothing then slide it out to the appropriate height
+		document.getElementById("cookieWarning").style.display = "none";
+		document.getElementById("cookieWarning").style.height = 0;
+  
+		// Uses jQuery to animate the slide but simple JS could do the same if you don't want to use jQuery
+		$("#cookieWarning").animate({
+			 height: 28
+		}, 500, function(){
+		}).css("display", "block");    
+	}
+
+// self calling so once this is reached the code will run so make sure your elements are in the DOM and the jQuery is loaded by now
+})();</script>
 </footer>
