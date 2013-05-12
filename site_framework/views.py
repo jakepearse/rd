@@ -37,7 +37,7 @@ def thankyou(request):
 			recipients = ['jake@rollerdisco.com']
 			if email_copy == 1:
 				recipients.append(sender)
-			send_mail(subject, message, sender, recipients)
+			send_mail(subject, message, sender, [recipients])
 			return render_to_response('thanks.html',{'nav_list':nav_list, 'promotions':promotion_qs,})
 	else:
 		form = ContactForm()
