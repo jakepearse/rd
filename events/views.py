@@ -84,7 +84,7 @@ def buytickets(request,event_id):
                       'version':'1',
                       'orderreference':new_ticket.id,
                       'sitesecurity':hash_value})
-      return render_to_response('buytickets.html',{'newform':newform,
+      return render_to_response('buytickets.html',{'nav_list':nav_list,'newform':newform,
         'ordered':ordered_tickets,
         'value':order_value,
         'event':event,
@@ -93,7 +93,8 @@ def buytickets(request,event_id):
     #if the form is not vailid
     else:
       return render_to_response('buytickets.html',
-      {'event':event,
+      {'nav_list':nav_list,
+      'event':event,
       'tickets':remaining_tickets,
       'promotions':promotion_qs,
       'form':form}
@@ -103,7 +104,8 @@ def buytickets(request,event_id):
     form = ticket_quantity(initial={'event':event_id,
                           'value':event.promotion.price})
     return render_to_response('buytickets.html',
-    {'event':event,
+    {'nav_list':nav_list,
+    'event':event,
     'tickets':remaining_tickets,
     'promotions':promotion_qs,
     'form':form}
