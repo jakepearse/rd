@@ -70,7 +70,7 @@ def buytickets(request,event_id):
     if form.is_valid():
       cd = form.cleaned_data
       ordered_tickets = cd.get('quantity')
-      order_value = "%.2f"%(float(event.promotion.price) * int(ordered_tickets))
+      order_value = event.promotion.price * ordered_tickets
       event = Event.objects.get(id=cd.get('event'))
       new_ticket = Ticket(event=event,
         quantity=ordered_tickets,
@@ -79,10 +79,10 @@ def buytickets(request,event_id):
       event_id = str(event.id)
       hash_string="r0LleRst8r"
       securityHashObj = hashlib.new("sha256")
-      securityHashObj.update("%s%s%s%s%s"%('GBP',str(order_value),str(new_ticket.id),'event27112',hash_string))
+      securityHashObj.update("%s%s%s%s%s"%('GBP','%.2f'%(order_value),str(new_ticket.id),'event27112',hash_string))
       hash_value = 'g' + securityHashObj.hexdigest()
       newform = st_submit(initial={'currencyiso3a': 'GBP',
-                      'mainamount':str(order_value),
+                      'mainamount':'%.2f'%(order_value),
                       'sitereference':'event27112',
                       'version':'1',
                       'orderreference':str(new_ticket.id),
