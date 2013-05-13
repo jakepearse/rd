@@ -139,6 +139,7 @@ def callback(request):
     ticket.first_name = results['first_name']
     ticket.last_name=results.get('last_name')
     ticket.postcode=results.get('postcode')
+    ticket.save()
     return HttpResponse(200)
     #return render_to_response('callback_test.html',{'data':results})
   return HttpResponse(404)
