@@ -70,7 +70,7 @@ def buytickets(request,event_id):
     if form.is_valid():
       cd = form.cleaned_data
       ordered_tickets = cd.get('quantity')
-      order_value = float(event.promotion.price) * int(ordered_tickets)
+      order_value = "%.2"%(float(event.promotion.price) * int(ordered_tickets))
       event = Event.objects.get(id=cd.get('event'))
       new_ticket = Ticket(event=event,
         quantity=ordered_tickets,
