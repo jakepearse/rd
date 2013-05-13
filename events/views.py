@@ -79,7 +79,7 @@ def buytickets(request,event_id):
       event_id = str(event.id)
       hash_string="r0LleRst8r"
       securityHashObj = hashlib.new("sha256")
-      securityHashObj.update("%s%s%s%s"%('GBP',str(order_value),str(new_ticket.id),'event27112',hash_string)
+      securityHashObj.update("%s%s%s%s"%('GBP',str(order_value),str(new_ticket.id),'event27112',hash_string))
       hash_value = securityHashObj.hexdigest()
       newform = st_submit(initial={'currencyiso3a': 'GBP',
                       'mainamount':str(order_value),
