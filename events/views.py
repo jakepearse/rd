@@ -70,7 +70,7 @@ def buytickets(request,event_id):
     if form.is_valid():
       cd = form.cleaned_data
       ordered_tickets = cd.get('quantity')
-      order_value = event.promotion.price * ordered_tickets
+      order_value = float(event.promotion.price) * int(ordered_tickets)
       event = Event.objects.get(id=cd.get('event'))
       new_ticket = Ticket(event=event,
         quantity=ordered_tickets,
@@ -85,7 +85,7 @@ def buytickets(request,event_id):
                       'mainamount':str(order_value),
                       'sitereference':'event27112',
                       'version':'1',
-                      'orderreference':new_ticket.id,
+                      'orderreference':str(new_ticket.id),
                       'sitesecurity':"g%s"%(hash_value)})
       return render_to_response('buytickets.html',{'nav_list':nav_list,'newform':newform,
         'ordered':ordered_tickets,
