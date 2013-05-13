@@ -1,4 +1,4 @@
-import datetime, urllib, urllib2
+import datetime, urllib, urllib2, hashlib
 from django.contrib.auth import authenticate,login
 from django.shortcuts import HttpResponse, render_to_response, redirect, get_object_or_404
 from django.contrib.auth.models import User
@@ -77,20 +77,23 @@ def buytickets(request,event_id):
         totalCost=order_value)
       new_ticket.save()
       event_id = str(event.id)
-      hash_value ='hello i am a hash value'
+      hash_string="r0LleRst8r"
+      securityHashObj = hashlib.new("sha256")
+      securityHashObj.update("%s%s%s%s"%('GBP',str(order_value),str(new_ticket.id),'event27112',hash_string)
+      hash_value = securityHashObj.hexdigest()
       newform = st_submit(initial={'currencyiso3a': 'GBP',
                       'mainamount':str(order_value),
-                      'sitereference':'test_event32549',
+                      'sitereference':'event27112',
                       'version':'1',
                       'orderreference':new_ticket.id,
-                      'sitesecurity':hash_value})
+                      'sitesecurity':"g%s"%(hash_value)})
       return render_to_response('buytickets.html',{'nav_list':nav_list,'newform':newform,
         'ordered':ordered_tickets,
         'value':order_value,
         'event':event,
         'ticket':new_ticket,
         'promotions':promotion_qs},context_instance=RequestContext(request))
-    #if the form is not vailid
+    #if the form is not valid
     else:
       return render_to_response('buytickets.html',
       {'nav_list':nav_list,
@@ -131,12 +134,13 @@ def callback(request):
     'transaction_reference':data.get('transactionreference')
     }
     ticket_ref = request.POST['orderreference']
-    print ticket_ref
+    #print ticket_ref
     ticket=Ticket.objects.get(id=ticket_ref)
     ticket.first_name = results['first_name']
     ticket.last_name=results.get('last_name')
     ticket.postcode=results.get('postcode')
-    return render_to_response('callback.html',{'data':results})
+    return HttpResponse(200)
+    #return render_to_response('callback_test.html',{'data':results})
   return HttpResponse(404)
 
 def clear_tickets(request,ticket_id):
