@@ -118,25 +118,25 @@ def callback(request):
   if request.method == 'POST':
     data = request.POST
     results={
-    'authcode':data.get('authcode'),
-    'billing_email':data.get('billingemail'),
-    'first_name':data.get('billingfirstname'),
-    'last_name':data.get('billinglastname'),
-    'postcode':data.get('billingpostcode'),
-    'name_prefix':data.get('billingprefixname'),
-    'telephone':data.get('billingtelephone'),
-    'error_code':data.get('errorcode'),
-    'main_amount':data.get('mainamount'),
-    'order_reference':data.get('orderreference'),
-    'status':data.get('status'),
-    'transaction_reference':data.get('transactionreference')
+    'authcode':data['authcode'],
+    'billing_email':data['billingemail'],
+    'first_name':data['billingfirstname'],
+    'last_name':data['billinglastname'],
+    'postcode':data['billingpostcode'],
+    'name_prefix':data['billingprefixname'],
+    'telephone':data['billingtelephone'],
+    'error_code':data['errorcode'],
+    'main_amount':data['mainamount'],
+    'order_reference':data['orderreference'],
+    'status':data['status'],
+    'transaction_reference':data['transactionreference']
     }
     ticket_ref = request.POST['orderreference']
     #print ticket_ref
     ticket=Ticket.objects.get(id=ticket_ref)
     ticket.first_name = results['first_name']
-    ticket.last_name=results.get('last_name')
-    ticket.postcode=results.get('postcode')
+    ticket.last_name=results['last_name']
+    ticket.postcode=results['postcode']
     ticket.save()
     return HttpResponse(200)
     #return render_to_response('callback_test.html',{'data':results})
