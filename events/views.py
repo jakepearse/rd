@@ -128,7 +128,6 @@ def callback(request):
     'error_code':data.get('errorcode'),
     'main_amount':data.get('mainamount'),
     'order_reference':data.get('orderreference'),
-    'security_response_code':data.get('securityresponsesecuritycode'),
     'status':data.get('status'),
     'transaction_reference':data.get('transactionreference')
     }
