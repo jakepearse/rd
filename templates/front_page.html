@@ -14,7 +14,7 @@
 			<h2>{{article.title}}</h2>
 			{% endif %}
 			<p>{{article.body}}</p>
-      {% if article.image !=None %}
+      {% if article.image !="None" %}
         <img class="article_image" src='/static{{article.image}}'>
       {% endif %}
 		</article>
