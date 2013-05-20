@@ -1,4 +1,4 @@
-import datetime, urllib, urllib2, hashlib
+import datetime, urllib, urllib2#, hashlib
 from django.contrib.auth import authenticate,login
 from django.shortcuts import HttpResponse, render_to_response, redirect, get_object_or_404
 from django.contrib.auth.models import User
@@ -77,16 +77,15 @@ def buytickets(request,event_id):
         totalCost=order_value)
       new_ticket.save()
       event_id = str(event.id)
-      hash_string="r0LleRst8r"
-      securityHashObj = hashlib.new("sha256")
-      securityHashObj.update("%s%s%s%s%s"%('GBP','%.2f'%(order_value),str(new_ticket.id),'event27112',hash_string))
-      hash_value = 'g' + securityHashObj.hexdigest()
+      #hash_string="r0LleRst8r"
+      #securityHashObj = hashlib.new("sha256")
+      #securityHashObj.update("%s%s%s%s%s"%('GBP','%.2f'%(order_value),str(new_ticket.id),'event27112',hash_string))
+      #hash_value = 'g' + securityHashObj.hexdigest()
       newform = st_submit(initial={'currencyiso3a': 'GBP',
                       'mainamount':'%.2f'%(order_value),
                       'sitereference':'event27112',
                       'version':'1',
-                      'orderreference':str(new_ticket.id),
-                      'sitesecurity':hash_value})
+                      'orderreference':str(new_ticket.id),})
       return render_to_response('buytickets.html',{'nav_list':nav_list,'newform':newform,
         'ordered':ordered_tickets,
         'value':order_value,
