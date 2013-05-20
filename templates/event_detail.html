@@ -7,7 +7,9 @@
 		<p>Doors open at: {{promotion.startTime}}</p>
 		<p>Event Finishes at: {{promotion.finishTime}}</p>
 		<p>Ticket price (includes Skate Hire): &pound;{{promotion.price}} per person</p>
+    {% if promotion.title == "Thursday Night" %}
 		<p>Student tickets are available on the door, £6 with NUS (only student ID with a valid expiry date will be accepted)</p>
+    {% endif %}
 		<p class="special_text">Pre-book your ticket for access to the separate fast track, entrance queue.</p>
 		<p class="special_text">We always hold a few tickets back, for sale on the door so don't worry if they're all sold out here.</p>
 
