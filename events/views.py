@@ -117,8 +117,7 @@ def buytickets(request,event_id):
 def callback(request):
   if request.method == 'POST':
     data = request.POST
-    results={
-    'authcode':data['authcode'],
+    results={'authcode':data['authcode'],
     'billing_email':data['billingemail'],
     'first_name':data['billingfirstname'],
     'last_name':data['billinglastname'],
@@ -129,9 +128,8 @@ def callback(request):
     'main_amount':data['mainamount'],
     'order_reference':data['orderreference'],
     'status':data['status'],
-    'transaction_reference':data['transactionreference']
-    }
-    ticket_ref = request.POST['orderreference']
+    'transaction_reference':data['transactionreference']}
+    ticket_ref = data['orderreference']
     #print ticket_ref
     ticket=Ticket.objects.get(id=ticket_ref)
     ticket.first_name = results['first_name']
@@ -140,7 +138,8 @@ def callback(request):
     ticket.save()
     return HttpResponse(200)
     #return render_to_response('callback_test.html',{'data':results})
-  return HttpResponse(404)
+  else:
+    return HttpResponse(404)
 
 def clear_tickets(request,ticket_id):
   ticket_id=int(ticket_id)
