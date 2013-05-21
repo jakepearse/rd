@@ -148,15 +148,13 @@ def callback(request):
     else:
       ticket.status="error"
     ticket.save()
-    #subject = "Ticket callback recived"
-    #somestring =""
-    #for k,v in results.items():
-    #  somestring.append(k+' ')
-    #  somestring.append(v+'\n')
-    #message = somestring
-    #sender = "callback script"
-    #recipents = ["tickets@rollerdisco.com"]
-    #send_mail(subject, message, sender, recipients)
+    subject = "Ticket callback recived"
+    somestring =""
+    for k,v in results.items():
+      somestring += "%s = %s\n"%(str(k),str(v))
+    recipients = ['mail@jakepearse.com']
+    sender="automaticaly generated"
+    send_mail(subject, somestring, sender, recipients)
     return HttpResponse(200)
     #return render_to_response('callback_test.html',{'data':results})
   else:
