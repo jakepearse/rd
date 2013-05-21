@@ -148,7 +148,7 @@ def callback(request):
     else:
       ticket.status="error"
     ticket.save()
-    subject = "Ticket %s callback recived"%ticket_ref
+    subject = "Ticket callback recived"
     message = str(results)
     sender = "callback script"
     recipents = ["tickets@rollerdisco.com"]
