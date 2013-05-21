@@ -8,6 +8,7 @@ from forms import ticket_quantity, st_submit
 from django import forms
 from models import Ticket, Event, Promotion
 from navigation.views import navlist
+from django.views.decorators.csrf import csrf_exempt
 
 # The nav_list query set from the navigation app provides the list to go
 # in the navigation tabs, you should pass 'nav_list':nav_list to
@@ -113,7 +114,7 @@ def buytickets(request,event_id):
     'form':form}
     ,context_instance=RequestContext(request))
 
-      
+@csrf_exempt
 def callback(request):
   if request.method == 'POST':
     data = request.POST
