@@ -135,7 +135,18 @@ def callback(request):
     ticket=Ticket.objects.get(id=ticket_ref)
     ticket.first_name = results['first_name']
     ticket.last_name=results['last_name']
+    ticket.name_prefix=results['name_prefix']
+    ticket.telephone=results['telephone']
     ticket.postcode=results['postcode']
+    ticket.email=results['billing_email']
+    ticket.st_authCode=results['authcode']
+    ticket.st_SecurityResponseCode='WTS'
+    ticket.st_RefNumber=results['transaction_reference']
+    ticket.st_ErrorCode=results['error_code']
+    if results['error_code']==0 or '0':
+      ticket.status="confirmed"
+    else:
+      ticket.status="error"
     ticket.save()
     return HttpResponse(200)
     #return render_to_response('callback_test.html',{'data':results})
