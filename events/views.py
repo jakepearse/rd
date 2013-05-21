@@ -152,8 +152,8 @@ def callback(request):
     somestring =""
     for k,v in results.items():
       somestring += "%s = %s\n"%(str(k),str(v))
-    recipients = ['mail@jakepearse.com']
-    sender="automaticaly generated"
+    recipients = ['tickets@rollerdisco.com']
+    sender="callback"
     send_mail(subject, somestring, sender, recipients)
     return HttpResponse(200)
     #return render_to_response('callback_test.html',{'data':results})
