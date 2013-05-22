@@ -25,6 +25,7 @@ class Promotion(models.Model):
 class Event(models.Model):
   date=models.DateField()
   promotion=models.ForeignKey(Promotion)
+  on_sale=models.BooleanField(default=1)
   def __unicode__(self):
     return "%d-%d-%d, %s"%(self.date.day,self.date.month,self.date.year,self.promotion.title)
 
@@ -44,7 +45,6 @@ class Ticket(models.Model):
   st_RefNumber=models.CharField(max_length=255, blank=True)
   st_ErrorCode=models.CharField(max_length=255, blank=True)
   orderPlaced=models.DateTimeField(default=datetime.datetime.now())
-  on_sale=models.BooleanField(default=1)
   def __unicode__(self):
     return "%s, %s %s %s"%(self.last_name,self.first_name,self.event,self.status)
   
