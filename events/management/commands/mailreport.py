@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
-from django.core.mail import send_mail
+from django.core.mail import send_mail, EmailMessage
 from events.models import Ticket, Event
 import datetime
 
@@ -21,4 +21,6 @@ class Command(BaseCommand):
       self.stdout.write(i)
       mail_string +=i
     recipients =[i for i in self.args]
-    send_mail("door-list for %s"%today, mail_string, "ticket-list", recipients)
+    mail = EmailMessage("door-list for %s"%today, ".csv attached", "ticket-list", recipients)
+    mail.attach('%s.csv'%today, mail_string, 'text/csv')
+    mail.send()
