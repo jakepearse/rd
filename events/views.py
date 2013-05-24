@@ -89,7 +89,7 @@ def buytickets(request,event_id):
                       'version':'1',
                       'orderreference':str(new_ticket.id),
                       'eventDate':event_date,
-                      'quantity':quantity})
+                      'quantity':ordered_tickets})
       return render_to_response('buytickets.html',{'nav_list':nav_list,'newform':newform,
         'ordered':ordered_tickets,
         'value':order_value,
