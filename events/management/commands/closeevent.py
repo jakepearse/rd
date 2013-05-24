@@ -8,9 +8,10 @@ class Command(BaseCommand):
   def handle(self, *args, **options):
     today = datetime.date.today()
     try:
-      event = Event.objects.filter(date=today).exclude(promotion__title='Family Jam')
+      eventQS = Event.objects.filter(date=today).exclude(promotion__title='Family Jam')
     except Event.DoesNotExist:
       raise CommandError('no event for %s' % today)
-    event[0].on_sale = False
-    event[0].save()
-    self.stdout.write('Successfully closed event "%s"\n' % event[0].date)
+    for event in eventQS:
+      event.on_sale = 0
+      event.save()
+      self.stdout.write('Successfully closed event "%s"\n' % event)
