@@ -9,6 +9,7 @@ from django import forms
 from models import Ticket, Event, Promotion
 from navigation.views import navlist
 from django.views.decorators.csrf import csrf_exempt
+from dateutil import parser
 
 # The nav_list query set from the navigation app provides the list to go
 # in the navigation tabs, you should pass 'nav_list':nav_list to
@@ -78,6 +79,7 @@ def buytickets(request,event_id):
         totalCost=order_value)
       new_ticket.save()
       event_id = str(event.id)
+      event_date = str(event.date)
       #hash_string="r0LleRst8r"
       #securityHashObj = hashlib.new("sha256")
       #securityHashObj.update("%s%s%s%s%s"%('GBP','%.2f'%(order_value),str(new_ticket.id),'event27112',hash_string))
@@ -86,7 +88,9 @@ def buytickets(request,event_id):
                       'mainamount':'%.2f'%(order_value),
                       'sitereference':'event27112',
                       'version':'1',
-                      'orderreference':str(new_ticket.id),})
+                      'orderreference':str(new_ticket.id),
+                      'eventDate':event_date,
+                      'quantity':quantity})
       return render_to_response('buytickets.html',{'nav_list':nav_list,'newform':newform,
         'ordered':ordered_tickets,
         'value':order_value,
@@ -129,25 +133,45 @@ def callback(request):
     'main_amount':data['mainamount'],
     'order_reference':data['orderreference'],
     'status':data['status'],
-    'transaction_reference':data['transactionreference']}
+    'transaction_reference':data['transactionreference'],
+    'eventDate':data['eventDate'],
+    'quantity':data['quantity']}
     ticket_ref = data['orderreference']
     #print ticket_ref
-    ticket=Ticket.objects.get(id=ticket_ref)
-    ticket.first_name = results['first_name']
-    ticket.last_name=results['last_name']
-    ticket.name_prefix=results['name_prefix']
-    ticket.telephone=results['telephone']
-    ticket.postcode=results['postcode']
-    ticket.email=results['billing_email']
-    ticket.st_authCode=results['authcode']
-    ticket.st_SecurityResponseCode='WTS'
-    ticket.st_RefNumber=results['transaction_reference']
-    ticket.st_ErrorCode=results['error_code']
-    if results['error_code']==0 or '0':
-      ticket.status="confirmed"
-    else:
-      ticket.status="error"
-    ticket.save()
+    try:
+      ticket=Ticket.objects.get(id=ticket_ref)
+      ticket.first_name = results['first_name']
+      ticket.last_name=results['last_name']
+      ticket.name_prefix=results['name_prefix']
+      ticket.telephone=results['telephone']
+      ticket.postcode=results['postcode']
+      ticket.email=results['billing_email']
+      ticket.st_authCode=results['authcode']
+      ticket.st_SecurityResponseCode='WTS'
+      ticket.st_RefNumber=results['transaction_reference']
+      ticket.st_ErrorCode=results['error_code']
+      if results['error_code']==0 or '0':
+        ticket.status="confirmed"
+      else:
+        ticket.status="error"
+      ticket.save()
+    except:
+      matchedEvent = Event.objects.get(date=parser.parse(results['eventDate']))
+      ticket = Ticket(first_name=results['first_name'],
+      last_name=results['last_name'],
+      name_prefix=results['name_prefix'],
+      telephone=results['telephone'],
+      postcode=results['postcode'],
+      email=results['billing_email'],
+      st_authCode=results['authcode'],
+      st_SecurityResponseCode='WTS',
+      st_RefNumber=results['transaction_reference'],
+      st_ErrorCode=results['error_code'],
+      totalCost=results['main_amount'],
+      quantity=results['quantity'],
+      status="callback failed",
+      event=matchedEvent)
+      ticket.save()
     subject = "Ticket callback recived"
     somestring =""
     for k,v in results.items():

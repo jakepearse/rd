@@ -25,4 +25,6 @@ class st_submit(forms.Form):
   sitereference = forms.CharField(max_length=20,widget=forms.HiddenInput())
   version = forms.CharField(max_length=1,widget=forms.HiddenInput())
   orderreference = forms.CharField(max_length=255,widget=forms.HiddenInput())
+  eventDate = forms.CharField(max_length=255,widget=forms.HiddenInput())
+  quantity = forms.CharField(max_length=255,widget=forms.HiddenInput())
   #sitesecurity = forms.CharField(max_length=255)
