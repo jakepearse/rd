@@ -10,7 +10,7 @@ class ticket_quantity(forms.Form):
   def clean_quantity(self):
     order_quantity = self.cleaned_data['quantity']
     event_id = self.data['event']
-    ticket_qs = Ticket.objects.filter(event=event_id)
+    ticket_qs = Ticket.objects.filter(event=event_id).exclude(status='pending')
     sold_tickets = 0
     for i in ticket_qs:
       sold_tickets += i.quantity
