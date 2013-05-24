@@ -9,7 +9,6 @@ from django import forms
 from models import Ticket, Event, Promotion
 from navigation.views import navlist
 from django.views.decorators.csrf import csrf_exempt
-from dateutil import parser
 
 # The nav_list query set from the navigation app provides the list to go
 # in the navigation tabs, you should pass 'nav_list':nav_list to
@@ -156,7 +155,10 @@ def callback(request):
         ticket.status="error"
       ticket.save()
     except:
-      matchedEvent = Event.objects.get(date=parser.parse(results['eventDate']))
+      rawdate = results['eventDate']
+      datelist = rawdate.split('-')
+      fixed_date = datetime.date(int(datelist[0]),int(datelist[1]),int(datelist[2]))
+      matchedEvent = Event.objects.get(date=fixed_date)
       ticket = Ticket(first_name=results['first_name'],
       last_name=results['last_name'],
       name_prefix=results['name_prefix'],
