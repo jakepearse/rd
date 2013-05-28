@@ -181,17 +181,10 @@ def callback(request):
     recipients = ['tickets@rollerdisco.com']
     sender="callback"
     send_mail(subject, somestring, sender, recipients)
-    cutomerMailBody=u"""Ticket Number: %s
-      Customer: %s %s %s
-      Event Date: %s
-      Price: %s
-      Location: Vauxhall
-      Ticket Type: Rollerdisco"""%(results['order_reference'],results['name_prefix'],
-      results['first_name'],results['last_name'],results['eventDate'],results['main_amount'])
-    customerEmail= [results['billing_email'],'tickets@rollerdisco.com']
-    customerSubject="Your Rollerdisco Ticket"
-    customerSender="tickets@rollerdisco.con"
-    send_mail(customerSubject,CustomerBody,customerSender,customerEmail)
+    customerSubject ="Your Rollerdisco Ticket"
+    customerRecipients=[''%results['billing_email'],'tickets@rollerdisco.com']
+    customerMailBody= "Ticket Number: %s\nCustomer Name: %s %s\n Date: %s\nPrice: %s\nLocation: Vauxhall\nTicket Type: RollerDisco"%(str(ticket_ref),
+    results['first_name'],results['last_name'],results['eventDate'],results['main_amount'])
     return HttpResponse(200)
     #return render_to_response('callback_test.html',{'data':results})
   else:
