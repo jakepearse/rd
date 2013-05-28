@@ -138,7 +138,7 @@ def callback(request):
     ticket_ref = data['orderreference']
     #print ticket_ref
     try:
-      ticket=Ticket.objects.get(id=ticket_ref)
+      ticket=Ticket.objects.filter(id=ticket_ref)
       ticket.first_name = results['first_name']
       ticket.last_name=results['last_name']
       ticket.name_prefix=results['name_prefix']
@@ -158,7 +158,7 @@ def callback(request):
       rawdate = results['eventDate']
       datelist = rawdate.split('-')
       fixed_date = datetime.date(int(datelist[0]),int(datelist[1]),int(datelist[2]))
-      matchedEvent = Event.objects.get(date=fixed_date)
+      matchedEvent = Event.objects.filter(date=fixed_date)
       ticket = Ticket(first_name=results['first_name'],
       last_name=results['last_name'],
       name_prefix=results['name_prefix'],
@@ -172,7 +172,7 @@ def callback(request):
       totalCost=results['main_amount'],
       quantity=results['quantity'],
       status="callback failed",
-      event=matchedEvent)
+      event=matchedEvent[0])
       ticket.save()
     subject = "Ticket callback recived"
     somestring =""
@@ -181,6 +181,17 @@ def callback(request):
     recipients = ['tickets@rollerdisco.com']
     sender="callback"
     send_mail(subject, somestring, sender, recipients)
+    cutomerMailBody=u"""Ticket Number: %s
+      Customer: %s %s %s
+      Event Date: %s
+      Price: %s
+      Location: Vauxhall
+      Ticket Type: Rollerdisco"""%(results['order_reference'],results['name_prefix'],
+      results['first_name'],results['last_name'],results['eventDate'],results['main_amount'])
+    customerEmail= [results['billing_email'],'tickets@rollerdisco.com']
+    customerSubject="Your Rollerdisco Ticket"
+    customerSender="tickets@rollerdisco.con"
+    send_mail(customerSubject,CustomerBody,customerSender,customerEmail)
     return HttpResponse(200)
     #return render_to_response('callback_test.html',{'data':results})
   else:
