@@ -193,8 +193,8 @@ def callback(request):
       send_mail(customerSubject,customerMailBody,'tickets@rollerdisco.com',customerRecipients)
     except:
       return HttpResponse('failing at 2nd send_mail')
-    #return HttpResponse(200)
-    return render_to_response('callback.html',{'data':results})
+    return HttpResponse(200)
+    #return render_to_response('callback.html',{'data':results})
   else:
     return HttpResponse(404)
 
