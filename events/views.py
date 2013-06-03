@@ -119,6 +119,7 @@ def buytickets(request,event_id):
 
 @csrf_exempt
 def callback(request):
+  admin_mail ="tickets@rollerdisco.com"
   if request.method == 'POST':
     data = request.POST
     results={'authcode':data['authcode'],
@@ -177,14 +178,21 @@ def callback(request):
     subject = "Ticket callback recived"
     somestring =""
     for k,v in results.items():
-      somestring += "%s = %s\n"%(k,v)
-    recipients = ['tickets@rollerdisco.com']
+      somestring += "%s = %s\n"%(unicode(k),unicode(v))
+    recipients = [admin_mail]
     sender="callback"
-    send_mail(subject, somestring, sender, recipients)
+    try:
+      send_mail(subject, somestring, sender, recipients)
+    except:
+      return HttpResponse('failing at first send_mail')
     customerSubject ="Your Rollerdisco Ticket"
-    customerRecipients=['%s'%results['billing_email'],'tickets@rollerdisco.com']
+    customerRecipients=['%s'%results['billing_email'],admin_mail]
     customerMailBody= "Ticket Number: %s\nCustomer Name: %s %s\n Date: %s\nPrice: %s\nLocation: Vauxhall\nTicket Type: RollerDisco"%(ticket_ref,
     results['first_name'],results['last_name'],results['eventDate'],results['main_amount'])
+    try:
+      send_mail(customerSubject,customerMailBody,'tickets@rollerdisco.com',customerRecipients)
+    except:
+      return HttpResponse('failing at 2nd send_mail')
     return HttpResponse(200)
     #return render_to_response('callback_test.html',{'data':results})
   else:
