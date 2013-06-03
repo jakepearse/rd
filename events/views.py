@@ -177,13 +177,13 @@ def callback(request):
     subject = "Ticket callback recived"
     somestring =""
     for k,v in results.items():
-      somestring += "%s = %s\n"%(str(k),str(v))
+      somestring += "%s = %s\n"%(k,v)
     recipients = ['tickets@rollerdisco.com']
     sender="callback"
     send_mail(subject, somestring, sender, recipients)
     customerSubject ="Your Rollerdisco Ticket"
-    customerRecipients=[''%results['billing_email'],'tickets@rollerdisco.com']
-    customerMailBody= "Ticket Number: %s\nCustomer Name: %s %s\n Date: %s\nPrice: %s\nLocation: Vauxhall\nTicket Type: RollerDisco"%(str(ticket_ref),
+    customerRecipients=['%s'%results['billing_email'],'tickets@rollerdisco.com']
+    customerMailBody= "Ticket Number: %s\nCustomer Name: %s %s\n Date: %s\nPrice: %s\nLocation: Vauxhall\nTicket Type: RollerDisco"%(ticket_ref,
     results['first_name'],results['last_name'],results['eventDate'],results['main_amount'])
     return HttpResponse(200)
     #return render_to_response('callback_test.html',{'data':results})
