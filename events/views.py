@@ -178,7 +178,7 @@ def callback(request):
     subject = "Ticket callback recived"
     somestring =""
     for k,v in results.items():
-      somestring += "%s = %s\n"%(unicode(k),unicode(v))
+      somestring += "%s = %s\n"%(k,v)
     recipients = [admin_mail]
     sender="callback"
     try:
@@ -193,8 +193,8 @@ def callback(request):
       send_mail(customerSubject,customerMailBody,'tickets@rollerdisco.com',customerRecipients)
     except:
       return HttpResponse('failing at 2nd send_mail')
-    return HttpResponse(200)
-    #return render_to_response('callback_test.html',{'data':results})
+    #return HttpResponse(200)
+    return render_to_response('callback.html',{'data':results})
   else:
     return HttpResponse(404)
 
