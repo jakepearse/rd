@@ -139,7 +139,7 @@ def callback(request):
     ticket_ref = data['orderreference']
     #print ticket_ref
     try:
-      ticket=Ticket.objects.filter(id=ticket_ref)
+      ticket=Ticket.objects.get(id=ticket_ref)
       ticket.first_name = results['first_name']
       ticket.last_name=results['last_name']
       ticket.name_prefix=results['name_prefix']
