@@ -27,7 +27,7 @@ class Event(models.Model):
   promotion=models.ForeignKey(Promotion)
   on_sale=models.BooleanField(default=1)
   def __unicode__(self):
-    return "%d-%d-%d, %s"%(self.date.day,self.date.month,self.date.year,self.promotion.title)
+    return "%s - %s "%(self.date,self.promotion.title)
 
 class Ticket(models.Model):
   event=models.ForeignKey(Event)

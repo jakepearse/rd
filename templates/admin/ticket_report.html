@@ -1,0 +1,19 @@
+{% extends "admin/base_site.html" %}
+{% block breadcrumbs %}<div class="breadcrumbs"><a href="/admin/">
+home</a> >Ticket Reports</div>{% endblock %}
+{% block title %}jakes admin page{% endblock %}
+
+{% block content %}
+<div id="content-main">
+  <h1>List of Tickets by Event:</h1>
+  <form action="{% url ticket_report %}" method="post">
+  {% csrf_token %}
+  {{form}}
+  <input type='submit' value='make report'>
+  </form>
+    {% for ticket in ticket_list %}
+      <h3>{{ ticket }}</h3>
+      {% endfor %}
+  
+</div>
+{% endblock %}

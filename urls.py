@@ -18,6 +18,7 @@ urlpatterns = patterns('',
   # Uncomment the admin/doc line below to enable admin documentation:
 	# url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 	# Uncomment the next line to enable the admin:
+  url(r'^admin/ticketreports/$', 'events.admin_views.ticket_report', name='ticket_report'),
   url(r'^admin/', include(admin.site.urls)),
   url(r'^callback/$', 'events.views.callback', name='callback'),
   url(r'^cleartickets/(\d+)/$', 'events.views.clear_tickets'),

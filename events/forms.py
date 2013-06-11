@@ -2,6 +2,8 @@ from django import forms
 from django.core import validators
 from models import Ticket, Event
 from django.contrib.auth.models import User
+import datetime
+from django.forms.extras.widgets import SelectDateWidget
 
 class ticket_quantity(forms.Form):
   quantity = forms.IntegerField(label="Number of tickets",min_value=1,max_value=25,help_text="Limit of 25 tickets per customer")
@@ -28,3 +30,7 @@ class st_submit(forms.Form):
   eventDate = forms.CharField(max_length=255,widget=forms.HiddenInput())
   quantity = forms.CharField(max_length=255,widget=forms.HiddenInput())
   #sitesecurity = forms.CharField(max_length=255)
+
+class ticket_report_form(forms.Form):
+  eventQS=Event.objects.all()
+  event = forms.ModelChoiceField(queryset=eventQS)

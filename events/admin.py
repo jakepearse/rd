@@ -3,6 +3,9 @@ import datetime
 from django.contrib import admin
 from events.models import Promotion,Event,Ticket
 from site_framework.admin import CommonMedia
+from django.db import models
+from django.conf.urls.defaults import patterns
+from events.admin_views import ticket_report
 
 
 class PromotionAdminForm(forms.ModelForm):
@@ -41,12 +44,14 @@ class EventAdmin(admin.ModelAdmin):
 
 class TicketAdmin(admin.ModelAdmin):
   list_display=['id','event','status','quantity','st_RefNumber',]
-  list_filter=('event__date','event__promotion','status',)
+  list_filter=('event','event__promotion','status',)
   search_fields=['first_name','last_name','email',]
   raw_id_field = 'event'
+
 
 
 ### Now register with the admin site
 admin.site.register(Promotion,PromotionAdmin,Media=CommonMedia,)
 admin.site.register(Event,EventAdmin)
-admin.site.register(Ticket,TicketAdmin,)
+admin.site.register(Ticket,TicketAdmin)
+
