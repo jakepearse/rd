@@ -20,9 +20,9 @@ def ticket_report(request):
       user = User.objects.get(id=request.POST['mailto'])
       now = str(datetime.datetime.now())
       with open("/home/jake/rollerdisco/%s-TicketReport for %s - %s.csv"%(user,request.POST['event'],now),'w') as report:
-        report.write("'First Name','Last Name','Postcode','Quantity'")
+        report.write("'First Name','Last Name','Postcode','Quantity'\n")
         for ticket in ticket_list:
-          report.write("'%s','%s','%s','%s'"%(ticket.first_name,ticket.last_name,ticket.postcode,ticket.quantity))
+          report.write("'%s','%s','%s','%s'\n"%(ticket.first_name,ticket.last_name,ticket.postcode,ticket.quantity))
         report.write("'','','Total','%s'"%total)
       recipients = ['%s'%user.email,]
       mail = EmailMessage("Your Ticket Report", "Automatically Generated", "noreply@rollerdisco.com", recipients)
