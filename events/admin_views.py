@@ -26,7 +26,7 @@ def ticket_report(request):
         report.write("'','','Total','%s'"%total)
       recipients = ['%s'%user.email,]
       mail = EmailMessage("Your Ticket Report", "Automatically Generated", "noreply@rollerdisco.com", recipients)
-      mail.attach_file(report,mimetype="text/csv")
+      mail.attach_file(path="/home/jake/rollerdisco/%s-TicketReport for %s - %s.csv"%(user,request.POST['event'],now),mimetype="text/csv")
       mail.send()
     return render_to_response('admin/ticket_report.html', {'ticket_list':ticket_list,'form':form,'event_list':event_list,'total':total},RequestContext(request, {}),)
   else:
