@@ -18,7 +18,7 @@ def ticket_report(request):
       total += i.quantity
     if request.POST['mailto']=='1':
       now = str(datetime.datetime.now())
-      with open("/home/jake/rollerdisco/%s's-TicketReport for %s - %s.csv"%(request.POST['mailto'],request.POST['event'],now),'w') as report:
+      with open("/home/jake/rollerdisco/%s's-TicketReport for %s - %s.csv"%(user,request.POST['event'],now),'w') as report:
         report.write("'First Name','Last Name','Postcode','Quantity'")
         for ticket in ticket_list:
           report.write("'%s','%s','%s','%s'"%(ticket.first_name,ticket.last_name,ticket.postcode,ticket.quantity))
@@ -26,7 +26,7 @@ def ticket_report(request):
       user = User.objects.get(id=request.POST['mailto'])
       recipients = ['%s'%user.email,]
       mail = EmailMessage("Your Ticket Report", "Automatically Generated", "noreply@rollerdisco.com", recipients)
-      mail.attach_file(path="%s's-TicketReport for %s - %s.csv"%(request.POST['mailto'],request.POST['event'],now),mimetype="text/csv")
+      mail.attach_file(path="/home/jake/%s's-TicketReport for %s - %s.csv"%(user,request.POST['event'],now),mimetype="text/csv")
       mail.send()
     return render_to_response('admin/ticket_report.html', {'ticket_list':ticket_list,'form':form,'event_list':event_list,'total':total},RequestContext(request, {}),)
   else:
