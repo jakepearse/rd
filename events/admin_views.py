@@ -10,7 +10,7 @@ import datetime
 def ticket_report(request):
   today = datetime.date.today()
   event_list= Event.objects.all().filter(date__gte=today)
-  form = ticket_report_form(initial={'event':event_list[0]})
+  form = ticket_report_form()
   if request.method =='POST':
     ticket_list = Ticket.objects.filter(event=request.POST['event']).filter(status='confirmed')
     total =0
@@ -18,7 +18,7 @@ def ticket_report(request):
       total += i.quantity
     if request.POST['mailto']=='1':
       now = str(datetime.datetime.now())
-      with open("%s's-TicketReport for %s - %s.csv"%(request.POST['mailto'],request.POST['event'],now),'w') as report:
+      with open("/home/jake/rollerdisco/%s's-TicketReport for %s - %s.csv"%(request.POST['mailto'],request.POST['event'],now),'w') as report:
         report.write("'First Name','Last Name','Postcode','Quantity'")
         for ticket in ticket_list:
           report.write("'%s','%s','%s','%s'"%(ticket.first_name,ticket.last_name,ticket.postcode,ticket.quantity))
