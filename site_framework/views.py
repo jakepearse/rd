@@ -26,19 +26,19 @@ def frontpage(request):
     return render_to_response('news.html',{'articles':articles_qs,'promotions':promotion_qs,'nav_list':nav_list,'url':url,})
     
 def thankyou(request):
-	if request.method == 'POST': 
-  		form = ContactForm(request.POST)
-  		if form.is_valid():
-			name = form.cleaned_data['name']
-			subject = form.cleaned_data['subject']
-			message = form.cleaned_data['message']
-			sender = form.cleaned_data['sender']
-			email_copy = form.cleaned_data['email_copy']
-			recipients = ['info@rollerdisco.com']
-			if email_copy == 1:
-				recipients.append(sender)
-			send_mail(subject, message, sender, recipients)
-			return render_to_response('thanks.html',{'nav_list':nav_list, 'promotions':promotion_qs,})
-	else:
-		form = ContactForm()
-		return render_to_response("contact.html",{'form':form, 'nav_list':nav_list,'url':url,'promotions':promotion_qs},context_instance=RequestContext(request))
+  if request.method == 'POST': 
+    form = ContactForm(data=request.POST)
+    if form.is_valid():
+      name = form.cleaned_data['name']
+      subject = form.cleaned_data['subject']
+      message = form.cleaned_data['message']
+      sender = form.cleaned_data['sender']
+      email_copy = form.cleaned_data['email_copy']
+      recipients = ['info@rollerdisco.com']
+      if email_copy == 1:
+        recipients.append(sender)
+        send_mail(subject, message, sender, recipients)
+      return render_to_response('thanks.html',{'nav_list':nav_list, 'promotions':promotion_qs,})
+  else:
+    form = ContactForm()
+    return render_to_response("contact.html",{'form':form, 'nav_list':nav_list,'url':url,'promotions':promotion_qs},context_instance=RequestContext(request))

@@ -33,4 +33,6 @@ class st_submit(forms.Form):
 
 class ticket_report_form(forms.Form):
   eventQS=Event.objects.all()
+  userQS=User.objects.all()
   event = forms.ModelChoiceField(queryset=eventQS)
+  mailto = forms.ModelChoiceField(queryset=userQS)

@@ -5,15 +5,29 @@ home</a> >Ticket Reports</div>{% endblock %}
 
 {% block content %}
 <div id="content-main">
-  <h1>List of Tickets by Event:</h1>
+  <h1>Ticket report for {{ event }}:</h1>
   <form action="{% url ticket_report %}" method="post">
   {% csrf_token %}
-  {{form}}
+  <table>
+  {{form.as_table}}
+  </table>
   <input type='submit' value='make report'>
   </form>
+  <hr>
+  <table>
+        <tr>
+    <th>First Name</th><th>Last Name</th><th>Postcode</th><th>Quantity</th></tr>
     {% for ticket in ticket_list %}
-      <h3>{{ ticket }}</h3>
+
+      <tr>
+        <td>{{ ticket.first_name }}</td>
+        <td>{{ ticket.last_name }}</td>
+        <td>{{ ticket.postcode }}</td>
+        <td>{{ ticket.quantity }}</td>
+        </tr>
       {% endfor %}
-  
+  <tr><th></th><th></th><th></th><th>Total</th></tr>
+  <tr><td></td><td><td></td></td><td>{{ total }}</td></tr>
+  </table>
 </div>
 {% endblock %}
