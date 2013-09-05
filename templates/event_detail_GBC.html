@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+	<h2>{{promotion.title}}</h2>
+	<br class="clear" />
+	<div class="event_content">
+		<p>Doors open at: {{promotion.startTime}}</p>
+		<p>Event Finishes at: {{promotion.finishTime}}</p>
+		<p>Ticket price: &pound;{{promotion.price}} per person</p>
+	</div>
+	<hr>
+	{% autoescape off %}
+	<p>{{promotion.description}}</p>
+	{% endautoescape %}
+  <h2>Book Your Tickets Now!</h2>
+	<ul>
+	{% for event in events %}
+		<li><a href="/buytickets/{{event.id}}">
+			<div class="promotionBox">
+				{{event.date}}
+				<img src="/static/images/upload/{{event.promotion.flyer}}" />
+				Price: &pound;{{event.promotion.price}}
+			</div>
+		</a></li>
+	{% endfor %}
+	</ul>
+	<br class="clear" />
+{% endblock %}

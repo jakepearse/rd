@@ -46,7 +46,14 @@ def eventdetail(request,promotion_id):
   promotion = Promotion.objects.get(id=promotion_id)
   today = datetime.date.today()
   events = Event.objects.filter(promotion__id=promotion_id).order_by('date').filter(date__gte=today).filter(on_sale=True)
-  return render_to_response('event_detail.html',
+  if promotion_id == 9:
+    return render_to_response('event_detail_GBC.html',
+                              {'promotion':promotion,
+                              'events':events,
+                              'nav_list':nav_list,
+                              'promotions':promotion_qs,})
+  else:
+    return render_to_response('event_detail.html',
                               {'promotion':promotion,
                               'events':events,
                               'nav_list':nav_list,
