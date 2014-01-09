@@ -28,9 +28,9 @@ def frontpage(request):
 def view_article(request,article_title):
     try:
         article_qs = Article.objects.filter(title = article_title)
-        return render_to_response("news.html",{'articles':article_qs,'nav_list':nav_list,'promotions':promotion_qs,'url':url})
+        return render_to_response("news.html",{'articles':article_qs,'nav_list':nav_list,'promotions':promotion_qs})
     except:
-        return HttpResponse(404)
+        return HttpResponse(content=article_qs)
         
 def thankyou(request):
   if request.method == 'POST': 
