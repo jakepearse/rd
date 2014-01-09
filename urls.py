@@ -27,4 +27,5 @@ urlpatterns = patterns('',
 	# url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 	# Uncomment the next line to enable the admin:
   url(r'^news/$','site_framework.views.frontpage',name='news'),
+  url(r'^article/(.*)/$', 'site_framework.views.view_article', name='view_article'),
 )
