@@ -27,8 +27,8 @@ def frontpage(request):
     
 def view_article(request,article_title):
     try:
-        article = Article.objects.get(title = article_title)
-        return render_to_response("news.html",{'articles':article,'nav_list':nav_list,'promotions':promotion_qs,'url':url})
+        article_qs = Article.objects.filter(title = article_title)
+        return render_to_response("news.html",{'articles':article_qs,'nav_list':nav_list,'promotions':promotion_qs,'url':url})
     except:
         return HttpResponse(404)
         
