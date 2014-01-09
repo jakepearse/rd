@@ -25,6 +25,13 @@ def frontpage(request):
     articles_qs= Article.objects.filter(front_page=False).filter(active=True)
     return render_to_response('news.html',{'articles':articles_qs,'promotions':promotion_qs,'nav_list':nav_list,'url':url,})
     
+def view_article(request,article_title):
+    try:
+        article = Article.objects.get(title = article_title)
+        return render_to_response("news.html",{'articles':article,'nav_list':nav_list,'promotions':promotion_qs,'url':url})
+    except:
+        return HttpResponse(404)
+        
 def thankyou(request):
   if request.method == 'POST': 
     form = ContactForm(data=request.POST)
