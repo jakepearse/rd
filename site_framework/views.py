@@ -4,7 +4,7 @@ from navigation.views import navlist
 from events.models import Promotion
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
 from django.core.mail import send_mail
 from forms import ContactForm
 
