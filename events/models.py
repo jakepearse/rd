@@ -7,7 +7,8 @@ from django.contrib.auth.models import User
     #if weekday != now(date_object):
       #raise ValidationError(u'Weekday %s does not match date!'%weekday)
       
-      
+
+
 class Promotion(models.Model):
   title=models.CharField(max_length=200)
   weekday=models.IntegerField()

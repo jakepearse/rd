@@ -27,9 +27,12 @@
 		  {% else %}
 			<p><b>Remaining tickets</b> = {{tickets}}</p>
 			<form action="" method="post">
+				<table>
 				{% csrf_token %}
-				{{form.as_p}}
+				{{form.as_table}}
+				</table>
 			  <input class="buy_ticket" type="submit" value="Next >>">
+			    
 			</form>
 		</div>
       {% endif %}

@@ -5,22 +5,33 @@ from django.contrib.auth.models import User
 import datetime
 from django.forms.extras.widgets import SelectDateWidget
 
+
 class ticket_quantity(forms.Form):
-  quantity = forms.IntegerField(label="Number of tickets",min_value=1,max_value=25,help_text="Limit of 25 tickets per customer")
+  quantity = forms.IntegerField(required=True,label="Number of tickets",min_value=1,max_value=25,help_text="Limit of 25 tickets per customer")
+  email = forms.EmailField(required=True,widget=forms.TextInput(attrs={'align':'left'}),label="Email Address",help_text="Your e-ticket will be delivered to this address")
+  c_email = forms.EmailField(required=True,widget=forms.TextInput(attrs={'align':'left'}),label="confirm your email address")
+  postcode = forms.CharField(required=True,widget=forms.TextInput(attrs={'align':'left'}),label="UK Postcode")
+  tel= forms.CharField(required=True,widget=forms.TextInput(attrs={'align':'left'}),label="Contact telephone number")
   event= forms.CharField(widget=forms.HiddenInput())
   value=forms.CharField(max_length=10,widget=forms.HiddenInput())
-  def clean_quantity(self):
-    order_quantity = self.cleaned_data['quantity']
+  def clean(self):
+    clean_data=self.cleaned_data
+    order_quantity = clean_data.get('quantity')
     event_id = self.data['event']
     ticket_qs = Ticket.objects.filter(event=event_id).exclude(status='pending')
-    sold_tickets = 0
+    sold_tickets=0
     for i in ticket_qs:
-      sold_tickets += i.quantity
+        sold_tickets += i.quantity
     remaining_tickets = Event.objects.get(id=event_id).promotion.ticketAllowance - sold_tickets
     if order_quantity > remaining_tickets:
       raise forms.ValidationError('Not enough tickets in stock!')
-    return order_quantity
-      
+    email=clean_data.get("email")
+    cemail=clean_data.get("c_email")
+    if email != cemail:
+        raise forms.ValidationError(u'Email addreses do not match!')    
+    return clean_data
+
+
 class st_submit(forms.Form):
   currencyiso3a = forms.CharField(max_length=3,widget=forms.HiddenInput())
   mainamount = forms.CharField(max_length=4,widget=forms.HiddenInput())

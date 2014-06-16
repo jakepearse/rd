@@ -80,8 +80,14 @@ def buytickets(request,event_id):
       ordered_tickets = cd.get('quantity')
       order_value = event.promotion.price * ordered_tickets
       event = Event.objects.get(id=cd.get('event'))
+      email = cd.get('email')
+      postcode = cd.get('postcode')
+      telephone = cd.get('tel')
       new_ticket = Ticket(event=event,
         quantity=ordered_tickets,
+        email=email,
+        telephone=telephone,
+        postcode=postcode,
         totalCost=order_value)
       new_ticket.save()
       event_id = str(event.id)
@@ -94,6 +100,7 @@ def buytickets(request,event_id):
                       'mainamount':'%.2f'%(order_value),
                       'sitereference':'event27112',
                       'version':'1',
+                      'billingemail':'email',
                       'orderreference':str(new_ticket.id),
                       'eventDate':event_date,
                       'quantity':ordered_tickets})
@@ -150,9 +157,9 @@ def callback(request):
       ticket.first_name = results['first_name']
       ticket.last_name=results['last_name']
       ticket.name_prefix=results['name_prefix']
-      ticket.telephone=results['telephone']
-      ticket.postcode=results['postcode']
-      ticket.email=results['billing_email']
+      #ticket.telephone=results['telephone']
+      #ticket.postcode=results['postcode']
+      #ticket.email=results['billing_email']
       ticket.st_authCode=results['authcode']
       ticket.st_SecurityResponseCode='WTS'
       ticket.st_RefNumber=results['transaction_reference']
