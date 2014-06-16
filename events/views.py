@@ -46,7 +46,7 @@ def eventdetail(request,promotion_id):
   promotion = Promotion.objects.get(id=promotion_id)
   today = datetime.date.today()
   events = Event.objects.filter(promotion__id=promotion_id).order_by('date').filter(date__gte=today).filter(on_sale=True)
-  if promotion_id == 9:
+  if promotion_id == 9 or promotion_id == 10:
     return render_to_response('event_detail_GBC.html',
                               {'promotion':promotion,
                               'events':events,
