@@ -136,8 +136,10 @@ def callback(request):
   admin_mail ="tickets@rollerdisco.com"
   if request.method == 'POST':
     data = request.POST
+    ticket_ref = data['orderreference']
+    ticket = Ticket.objects.get(id = ticket_ref)
     results={'authcode':data['authcode'],
-    'billing_email':data['billingemail'],
+    'billing_email':ticket.email,
     'first_name':data['billingfirstname'],
     'last_name':data['billinglastname'],
     'postcode':data['billingpostcode'],
@@ -150,8 +152,6 @@ def callback(request):
     'transaction_reference':data['transactionreference'],
     'eventDate':data['eventDate'],
     'quantity':data['quantity']}
-    ticket_ref = data['orderreference']
-    #print ticket_ref
     try:
       ticket=Ticket.objects.get(id=ticket_ref)
       ticket.first_name = results['first_name']
